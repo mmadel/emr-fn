@@ -10,7 +10,8 @@ import {
   SmartPaginationModule,
   AlertModule,
   FormModule,
-  ButtonModule
+  ButtonModule,
+  CardModule
 } from '@coreui/angular-pro';
 
 import {
@@ -33,7 +34,8 @@ import {
     SmartTableModule,
     SmartPaginationModule,
     FormModule,
-    ButtonModule
+    ButtonModule,
+    CardModule
   ]
 })
 export class InsuranceCompanyModule { }
