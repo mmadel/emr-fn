@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsuranceCompanyRoutingModule } from './insurance-company-routing.module';
 
 import {
@@ -11,7 +11,7 @@ import {
   AlertModule,
   FormModule,
   ButtonModule,
-  CardModule
+  CardModule,
 } from '@coreui/angular-pro';
 
 import {
@@ -35,7 +35,9 @@ import {
     SmartPaginationModule,
     FormModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class InsuranceCompanyModule { }

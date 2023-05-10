@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-insurance-company',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-insurance-company.component.css']
 })
 export class CreateInsuranceCompanyComponent implements OnInit {
-
+  @ViewChild('insuranceCompanyCreateForm') insuranceCompanyCreateForm: NgForm;
+  form = {
+    name: null,
+  };
+  errorMessage: string | null;
   constructor() { }
 
   ngOnInit(): void {
   }
+  create(){
 
+  }
+resetError(){
+
+}
 }
