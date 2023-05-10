@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateInsuranceCompanyComponent } from './components/create/create-insurance-company.component';
 import { ListInsuranceCompanyComponent } from './components/list/list-insurance-company.component';
 
 const routes: Routes = [
@@ -14,6 +15,13 @@ const routes: Routes = [
         component: ListInsuranceCompanyComponent,
         data: {
           title: 'list',
+        },
+      },
+      {
+        path: 'create',
+        component: CreateInsuranceCompanyComponent,
+        data: {
+          title: 'create',
         },
       },
     ]

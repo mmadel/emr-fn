@@ -171,6 +171,6 @@ export class ListInsuranceCompanyComponent implements OnInit {
     this.activePage$.next(page);
   }
   create() {
-    this.router.navigateByUrl('/admin/clinic/creation');
+    this.router.navigateByUrl('/insurance/company/create');
   }
 }
