@@ -15,39 +15,46 @@ export const NavItems: INavData[] = [
         name: 'Patient List',
         url: 'patient/list'
       },
+    ]
+  },
+  {
+    name: 'User',
+    url: '',
+    iconComponent: { name: 'cil-user' },
+    children: [
       {
-        name: 'Patient Creation',
-        url: 'patient/create'
-      }
+        name: 'List Users',
+        url: ''
+      },
     ]
   },
   {
     name: 'Administration',
     url: '',
-    iconComponent: { name: 'cil-applicationsSettings' },
+    iconComponent: { name: 'cil-devices' },
     children: [
       {
-        name: 'Validation List',
-        url: 'validation/list'
+        name: 'Insurance Compnay',
+        url: ''
       },
       {
-        name: 'Clinics',
-        url: 'clinic/list'
+        name: 'Appointment Type',
+        url: ''
       },
       {
-        name: 'Users',
-        url: 'user/list'
+        name: 'Scheduler Configuration',
+        url: ''
       }
     ],
   },
   {
-    name: 'Reports',
+    name: 'Scheduler',
     url: '',
-    iconComponent: { name: 'cil-search' },
+    iconComponent: { name: 'cil-calendar' },
     children: [
       {
-        name: 'Patient Source',
-        url: 'report/recommendation'
+        name: 'View Scheduler',
+        url: ''
       }
     ]
   }

@@ -116,10 +116,12 @@ import {
   cibZulip,
   cibInternetExplorer,
   cilTv,
-  cilCloudUpload, cilAccountLogout
+  cilCloudUpload, cilAccountLogout,
+  cilDevices
 } from '@coreui/icons';
 
 export const iconSubset = {
+  cilDevices,
   cibCcAmex,
   cibCcApplePay,
   cibCcMastercard,
