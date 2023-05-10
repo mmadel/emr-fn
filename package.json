@@ -28,7 +28,6 @@
     "chart.js": "^4.2.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
-    "ngx-perfect-scrollbar": "^10.1.1",
     "ngx-spinner": "^14.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
