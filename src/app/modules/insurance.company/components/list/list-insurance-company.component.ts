@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IColumn, IColumnFilterValue, ISorterValue } from '@coreui/angular-pro/lib/smart-table/smart-table.type';
 import { BehaviorSubject, combineLatest, debounceTime, distinctUntilChanged, map, Observable, retry, Subject, takeUntil, tap } from 'rxjs';
 import { InsuranceCompany } from '../../models/insurance.company';
@@ -86,7 +87,7 @@ export class ListInsuranceCompanyComponent implements OnInit {
     }))
   );
   insuranceCompany$!: Observable<InsuranceCompany[]>;
-  constructor(private insuranceCompanyService:InsuranceCompanyService) { }
+  constructor(private router: Router, private insuranceCompanyService:InsuranceCompanyService) { }
 
   ngOnInit(): void {
     this.activePage$.pipe(
@@ -168,5 +169,8 @@ export class ListInsuranceCompanyComponent implements OnInit {
   setActivePage(page: number) {
     page = page > 0 && this.totalPages$.value + 1 > page ? page : 1;
     this.activePage$.next(page);
+  }
+  create() {
+    this.router.navigateByUrl('/admin/clinic/creation');
   }
 }
