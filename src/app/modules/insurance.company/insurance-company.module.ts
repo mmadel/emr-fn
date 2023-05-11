@@ -18,6 +18,7 @@ import {
   CreateInsuranceCompanyComponent,
   ListInsuranceCompanyComponent
 } from './index'
+import { EmrCommonModule } from '../common/emr-common.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {
     ButtonModule,
     CardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EmrCommonModule
   ]
 })
 export class InsuranceCompanyModule { }

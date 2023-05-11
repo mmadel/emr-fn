@@ -15,13 +15,37 @@
                 <c-card-body>
                     <form cForm #insuranceCompanyCreateForm="ngForm" (ngSubmit)="create()" (change)="resetError()">
                         <small *ngIf="name.invalid && (name.dirty || name.touched)" class="form-text text-danger">
-                            Name is required
+                            Insurance Company Name is required
                         </small>
                         <c-input-group class="mb-3">
-                            <input autoComplete="name" cFormControl id="name" name="name"
+                            <input autoComplete="name" cFormControl id="name" name="name" sizing="sm"
                                 placeholder="Enter Insurance Company Name" required
                                 [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}"
-                                [(ngModel)]="form.name" #name="ngModel" />
+                                [(ngModel)]="insuranceCompany.name" #name="ngModel" />
+                        </c-input-group>
+                        <small *ngIf="type.invalid && (type.dirty || type.touched)" class="form-text text-danger">
+                            Insurance Company type is required
+                        </small>
+                        <c-input-group class="mb-3">
+                            <select cFormControl cSelect sizing="sm" id="type" name="type"
+                                placeholder="Enter Insurance Company Name" required
+                                [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}"
+                                [(ngModel)]="insuranceCompany.insuranceType" #type="ngModel">
+                                <option [ngValue]="null" disabled selected>Select insurance Company Type</option>
+                                <option *ngFor="let type of keys(types)" [ngValue]="type">
+                                    {{types[type]}}
+                                </option>
+                            </select>
+                        </c-input-group>
+                        <small *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="form-text text-danger">
+                            Insurance Company Phone is required
+                        </small>
+                        <c-input-group class="mb-3" sizing="sm">
+                            <span cInputGroupText id="basic-addon1">+1</span>
+                            <input cFormControl id="phone" name="phone" sizing="sm" required
+                                [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}"
+                                #phone="ngModel" [ngModel]="insuranceCompany.phone| phone"
+                                (ngModelChange)="insuranceCompany.phone=$event" maxlength="15" />
                         </c-input-group>
                     </form>
                 </c-card-body>
