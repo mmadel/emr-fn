@@ -28,7 +28,7 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-  
+
 
 
 } from '@coreui/angular-pro';
@@ -40,6 +40,7 @@ import {
   DefaultFooterComponent,
 } from './core';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -81,6 +82,11 @@ const APP_CONTAINERS = [
     BrowserAnimationsModule,
     FormsModule,
     DateRangePickerModule,
+    ToastrModule.forRoot({
+      timeOut: 15000, // 15 seconds
+      closeButton: true,
+      progressBar: true,
+    })
   ],
   providers: [
     {

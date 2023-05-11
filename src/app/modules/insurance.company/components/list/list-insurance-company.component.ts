@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IColumn, IColumnFilterValue, ISorterValue } from '@coreui/angular-pro/lib/smart-table/smart-table.type';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, combineLatest, debounceTime, distinctUntilChanged, map, Observable, retry, Subject, takeUntil, tap } from 'rxjs';
 import { InsuranceCompany } from '../../models/insurance.company';
 import { InsuranceCompanyService } from '../../services/insurance-company.service';
@@ -87,7 +88,8 @@ export class ListInsuranceCompanyComponent implements OnInit {
     }))
   );
   insuranceCompany$!: Observable<InsuranceCompany[]>;
-  constructor(private router: Router, private insuranceCompanyService:InsuranceCompanyService) { }
+  constructor(private router: Router, private insuranceCompanyService: InsuranceCompanyService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.activePage$.pipe(
@@ -130,7 +132,7 @@ export class ListInsuranceCompanyComponent implements OnInit {
           return this.retry$;
         }
       }),
-      tap((response:any) => {
+      tap((response: any) => {
         this.totalItems$.next(response.number_of_matching_records);
         if (response.number_of_records) {
           this.errorMessage$.next('');
@@ -138,7 +140,7 @@ export class ListInsuranceCompanyComponent implements OnInit {
         this.retry$.next(false);
         this.loadingData$.next(false);
       }),
-      map((response:any) => {
+      map((response: any) => {
         return response.records;
       })
     );
@@ -172,5 +174,12 @@ export class ListInsuranceCompanyComponent implements OnInit {
   }
   create() {
     this.router.navigateByUrl('/insurance/company/create');
+  }
+  remove(item: any) {
+    this.insuranceCompanyService.delete(item.id).subscribe(() => {
+      console.log(item);
+      this.toastr.success('Insurance Company Deleted..!!');
+      this.ngOnInit();
+    })
   }
 }

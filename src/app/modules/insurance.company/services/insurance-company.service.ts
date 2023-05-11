@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, debounceTime, distinctUntilChanged, Observ
 import { environment } from 'src/environments/environment';
 import { IApiParams } from '../components/list/interfaces/api.params';
 import { IData } from '../components/list/interfaces/idata';
+import { InsuranceCompany } from '../models/insurance.company';
 const httpOptions = {
   // headers: new HttpHeaders({
   //   'Content-Type': 'application/json',
@@ -19,6 +20,16 @@ export class InsuranceCompanyService {
   private baseUrl = environment.baseURL + 'insurance/company'
   constructor(private httpClient: HttpClient) { }
 
+  create(insuranceCompany: InsuranceCompany) {
+    const headers = { 'content-type': 'application/json' }
+    var createURL = environment.baseURL + 'insurance/company/create'
+    return this.httpClient.post(`${createURL}`, JSON.stringify(insuranceCompany), { 'headers': headers})
+  }
+
+  delete(id:number){
+    var createURL = environment.baseURL + 'insurance/company/delete/id/'+ id
+    return this.httpClient.delete(`${createURL}`)
+  }
   get(config$: BehaviorSubject<IApiParams>): Observable<any> {
     return config$.pipe(
       debounceTime(100),
@@ -38,8 +49,8 @@ export class InsuranceCompanyService {
     const httpParams: HttpParams = new HttpParams({ fromObject: apiParams });
 
     const options = Object.keys(httpParams).length
-    ? { params: httpParams, ...httpOptions }
-    : { params: {}, ...httpOptions };
+      ? { params: httpParams, ...httpOptions }
+      : { params: {}, ...httpOptions };
     return this.httpClient
       .get<IData>(this.baseUrl + "/find/clinicId/" + 1, options)
       .pipe(

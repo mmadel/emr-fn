@@ -1,24 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsuranceCompanyRoutingModule } from './insurance-company-routing.module';
 
 import {
-  GridModule,
-  SharedModule,
-  SmartTableModule,
-  SmartPaginationModule,
-  AlertModule,
-  FormModule,
-  ButtonModule,
-  CardModule,
+  AlertModule, ButtonModule,
+  CardModule, FormModule, GridModule,
+  SharedModule, SmartPaginationModule, SmartTableModule, TableModule,
+  UtilitiesModule
 } from '@coreui/angular-pro';
 
+import { EmrCommonModule } from '../common/emr-common.module';
 import {
   CreateInsuranceCompanyComponent,
   ListInsuranceCompanyComponent
-} from './index'
-import { EmrCommonModule } from '../common/emr-common.module';
+} from './index';
+import { IconModule } from '@coreui/icons-angular';
 
 
 @NgModule({
@@ -39,7 +36,11 @@ import { EmrCommonModule } from '../common/emr-common.module';
     CardModule,
     FormsModule,
     ReactiveFormsModule,
-    EmrCommonModule
+    EmrCommonModule,
+    TableModule,
+    UtilitiesModule,
+    IconModule
+
   ]
 })
 export class InsuranceCompanyModule { }

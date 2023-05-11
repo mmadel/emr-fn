@@ -6,6 +6,6 @@ export interface InsuranceCompany {
   insuranceType: string | null;
   phone: string | null;
   fax: string | null;
-  addresses: Address[] | null;
+  addresses: Address[];
   clinicId: number | null;
 }

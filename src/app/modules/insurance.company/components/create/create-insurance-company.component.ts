@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgControl, NgForm, NgModel, ValidationErrors } from '@angular/forms';
 import { InsuranceCompanyType } from '../../../common/models/enums/insurance.company.type';
 import { Address } from '../../../common/models/address';
 import { InsuranceCompany } from '../../models/insurance.company';
+import { ToastrService } from 'ngx-toastr';
+import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
+import { InsuranceCompanyService } from '../../services/insurance-company.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-insurance-company',
@@ -11,8 +15,10 @@ import { InsuranceCompany } from '../../models/insurance.company';
 })
 export class CreateInsuranceCompanyComponent implements OnInit {
   @ViewChild('insuranceCompanyCreateForm') insuranceCompanyCreateForm: NgForm;
+  @ViewChild('addressComp') addpressComp: AddressComponent;
   typeKeys = Object.values;
   types = InsuranceCompanyType;
+  addresses: Address[];
   insuranceCompanyAddress: Address = {
     addressType: null,
     other: null,
@@ -30,18 +36,38 @@ export class CreateInsuranceCompanyComponent implements OnInit {
     insuranceType: null,
     phone: null,
     fax: null,
-    addresses: null,
+    addresses: [],
     clinicId: null,
   }
   errorMessage: string | null;
-  constructor() {
+  submitted: boolean;
+  constructor(private toastr: ToastrService,
+    private insuranceCompanyService: InsuranceCompanyService,
+    private router: Router) {
   }
   ngOnInit(): void {
   }
   create() {
-
+   
+    if (this.insuranceCompanyCreateForm.valid && this.addresses !== undefined) {
+      this.insuranceCompany.addresses = this.addresses;
+      this.insuranceCompany.clinicId = 1;
+      console.log(JSON.stringify(this.insuranceCompany))
+      this.insuranceCompanyService.create(this.insuranceCompany).subscribe(() => {
+        console.log('call service..');
+        this.insuranceCompanyCreateForm.reset();
+        this.toastr.success('Insurance Company Created.!!');
+        this.addpressComp.addresses = [];
+        this.router.navigateByUrl('insurance/company/list')
+      })
+    } else {
+      this.toastr.error('Please Check Your Inputs', 'Error In Creation');
+    }
   }
   resetError() {
 
+  }
+  getInsuranceCompanyAddresses(addresses: any) {
+    this.addresses = addresses;
   }
 }
