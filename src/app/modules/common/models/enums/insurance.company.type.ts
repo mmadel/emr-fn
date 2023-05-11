@@ -1,4 +1,4 @@
-export enum InsuranceCompanyTypeEnum {
+export enum InsuranceCompanyType {
     Medicare = "Medicare",
     Medicaid = "Medicare",
     Automobile_Medical = "Automobile_Medical",

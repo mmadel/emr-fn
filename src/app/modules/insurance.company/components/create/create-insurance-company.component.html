@@ -5,15 +5,16 @@
 </c-row>
 <hr />
 <c-container fluid>
-    <c-row class="justify-content-center">
-        <c-col class="col">
-            <c-card class="mb-3 ustify-content-center">
-                <c-card-header>
-                    <h3>
-                        Essential information</h3>
-                </c-card-header>
-                <c-card-body>
-                    <form cForm #insuranceCompanyCreateForm="ngForm" (ngSubmit)="create()" (change)="resetError()">
+    <form cForm #insuranceCompanyCreateForm="ngForm" (ngSubmit)="create()" (change)="resetError()">
+        <c-row class="justify-content-center">
+            <c-col class="col">
+                <c-card class="mb-3 ustify-content-center">
+                    <c-card-header>
+                        <h3>
+                            Essential information</h3>
+                    </c-card-header>
+                    <c-card-body>
+
                         <small *ngIf="name.invalid && (name.dirty || name.touched)" class="form-text text-danger">
                             Insurance Company Name is required
                         </small>
@@ -32,7 +33,7 @@
                                 [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}"
                                 [(ngModel)]="insuranceCompany.insuranceType" #type="ngModel">
                                 <option [ngValue]="null" disabled selected>Select insurance Company Type</option>
-                                <option *ngFor="let type of keys(types)" [ngValue]="type">
+                                <option *ngFor="let type of typeKeys(types)" [ngValue]="type">
                                     {{types[type]}}
                                 </option>
                             </select>
@@ -42,7 +43,8 @@
                         </small>
                         <c-input-group class="mb-3" sizing="sm">
                             <span cInputGroupText id="basic-addon1">+1</span>
-                            <input  placeholder="Enter Insurance Company Phone" cFormControl id="phone" name="phone" sizing="sm" required
+                            <input placeholder="Enter Insurance Company Phone" cFormControl id="phone" name="phone"
+                                sizing="sm" required
                                 [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}"
                                 #phone="ngModel" [ngModel]="insuranceCompany.phone| phone"
                                 (ngModelChange)="insuranceCompany.phone=$event" maxlength="15" />
@@ -52,26 +54,28 @@
                         </small>
                         <c-input-group class="mb-3" sizing="sm">
                             <span cInputGroupText id="basic-addon1">+1</span>
-                            <input placeholder="Enter Insurance Company Fax" cFormControl id="fax" name="fax" sizing="sm" required
-                                [ngClass]="{'is-invalid': phone.invalid && (fax.dirty || fax.touched)}"
-                                #fax="ngModel" [ngModel]="insuranceCompany.fax| phone"
-                                (ngModelChange)="insuranceCompany.fax=$event" maxlength="15" />
+                            <input placeholder="Enter Insurance Company Fax" cFormControl id="fax" name="fax"
+                                sizing="sm" required
+                                [ngClass]="{'is-invalid': phone.invalid && (fax.dirty || fax.touched)}" #fax="ngModel"
+                                [ngModel]="insuranceCompany.fax| phone" (ngModelChange)="insuranceCompany.fax=$event"
+                                maxlength="15" />
                         </c-input-group>
-                    </form>
-                </c-card-body>
-            </c-card>
-        </c-col>
-    </c-row>
-    <c-row class="justify-content-center">
-        <c-col class="col">
-            <c-card class="mb-3 ustify-content-center">
-                <c-card-header>
-                    <h3>Address information</h3>
-                </c-card-header>
-                <c-card-body>
-                    ewewwe
-                </c-card-body>
-            </c-card>
-        </c-col>
-    </c-row>
+
+                    </c-card-body>
+                </c-card>
+            </c-col>
+        </c-row>
+        <c-row class="justify-content-center">
+            <c-col class="col">
+                <c-card class="mb-3 ustify-content-center">
+                    <c-card-header>
+                        <h3>Address information</h3>
+                    </c-card-header>
+                    <c-card-body>
+                        <app-address [address]="insuranceCompanyAddress"></app-address>
+                    </c-card-body>
+                </c-card>
+            </c-col>
+        </c-row>
+    </form>
 </c-container>

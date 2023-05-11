@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { InsuranceCompanyTypeEnum } from 'src/app/models/enums/insurance.company.type';
+import { InsuranceCompanyType } from '../../../common/models/enums/insurance.company.type';
+import { Address } from '../../../common/models/address';
 import { InsuranceCompany } from '../../models/insurance.company';
 
 @Component({
@@ -10,6 +11,19 @@ import { InsuranceCompany } from '../../models/insurance.company';
 })
 export class CreateInsuranceCompanyComponent implements OnInit {
   @ViewChild('insuranceCompanyCreateForm') insuranceCompanyCreateForm: NgForm;
+  typeKeys = Object.values;
+  types = InsuranceCompanyType;
+  insuranceCompanyAddress: Address = {
+    addressType: null,
+    other: null,
+    firstAddress: null,
+    secondAddress: null,
+    country: null,
+    city: null,
+    province: null,
+    state: null,
+    zipCode: null
+  }
   insuranceCompany: InsuranceCompany = {
     id: null,
     name: null,
@@ -19,8 +33,6 @@ export class CreateInsuranceCompanyComponent implements OnInit {
     addresses: null,
     clinicId: null,
   }
-  keys = Object.values;
-  types = InsuranceCompanyTypeEnum;
   errorMessage: string | null;
   constructor() {
   }
