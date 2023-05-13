@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreatePatientComponent
   ],
   imports: [
+    AlertModule,
     CommonModule,
     PatientRoutingModule,
     GridModule,
