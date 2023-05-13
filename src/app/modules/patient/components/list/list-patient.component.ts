@@ -12,4 +12,7 @@ export class ListPatientComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  create(){
+    
+  }
 }
