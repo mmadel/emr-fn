@@ -16,6 +16,7 @@ import {
   ListInsuranceCompanyComponent
 } from './index';
 import { IconModule } from '@coreui/icons-angular';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { IconModule } from '@coreui/icons-angular';
     EmrCommonModule,
     TableModule,
     UtilitiesModule,
-    IconModule
+    IconModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
   ]
 })

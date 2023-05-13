@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
 import { InsuranceCompanyService } from '../../services/insurance-company.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-insurance-company',
@@ -43,7 +44,8 @@ export class CreateInsuranceCompanyComponent implements OnInit {
   submitted: boolean;
   constructor(private toastr: ToastrService,
     private insuranceCompanyService: InsuranceCompanyService,
-    private router: Router) {
+    private router: Router,
+    private spinner: NgxSpinnerService) {
   }
   ngOnInit(): void {
   }
@@ -53,8 +55,9 @@ export class CreateInsuranceCompanyComponent implements OnInit {
       this.insuranceCompany.addresses = this.addresses;
       this.insuranceCompany.clinicId = 1;
       console.log(JSON.stringify(this.insuranceCompany))
+      this.spinner.show();
       this.insuranceCompanyService.create(this.insuranceCompany).subscribe(() => {
-        console.log('call service..');
+        this.spinner.hide();
         this.insuranceCompanyCreateForm.reset();
         this.toastr.success('Insurance Company Created.!!');
         this.addpressComp.addresses = [];
