@@ -8,13 +8,25 @@ import { ZipcodeDirective } from './directives/zipcode.directive';
 import { NumberonlyDirective } from './directives/numberonly.directive';
 import { IconModule } from '@coreui/icons-angular';
 
+const APP_COMMON_COMPONENTS = [
+  AddressComponent,
+]
+
+const APP_COMMON_PIPES = [
+  PhonePipe
+]
+
+const APP_COMMON_DIRECTIVES = [
+  ZipcodeDirective,
+  NumberonlyDirective,
+]
 @NgModule({
   declarations: [
-    AddressComponent,
-    PhonePipe,
-    ZipcodeDirective,
-    NumberonlyDirective
+    APP_COMMON_COMPONENTS,
+    ...APP_COMMON_PIPES,
+    ...APP_COMMON_DIRECTIVES
   ],
+
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -29,10 +41,9 @@ import { IconModule } from '@coreui/icons-angular';
     ButtonGroupModule
   ],
   exports: [
-    AddressComponent,
-    PhonePipe,
-    ZipcodeDirective,
-    NumberonlyDirective
+    APP_COMMON_COMPONENTS,
+    ...APP_COMMON_PIPES,
+    ...APP_COMMON_DIRECTIVES
   ],
 })
 export class EmrCommonModule { }
