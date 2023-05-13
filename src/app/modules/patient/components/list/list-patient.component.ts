@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-patient',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPatientComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  create(){
-    
+  create() {
+    this.router.navigateByUrl('/patient/create');
   }
 }
