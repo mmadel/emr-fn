@@ -19,12 +19,14 @@ import { IconModule } from '@coreui/icons-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientBasicInfoComponent } from './components/create/patient.basic.info/patient-basic-info.component';
+import { PatientIdInfoComponent } from './components/create/patient.id.info/patient-id-info.component';
 
 @NgModule({
   declarations: [
     ListPatientComponent,
     CreatePatientComponent,
-    PatientBasicInfoComponent
+    PatientBasicInfoComponent,
+    PatientIdInfoComponent
   ],
   imports: [
     AlertModule,
