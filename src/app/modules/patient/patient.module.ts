@@ -18,11 +18,13 @@ import { EmrCommonModule } from '../common/emr-common.module';
 import { IconModule } from '@coreui/icons-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PatientBasicInfoComponent } from './components/create/patient.basic.info/patient-basic-info.component';
 
 @NgModule({
   declarations: [
     ListPatientComponent,
-    CreatePatientComponent
+    CreatePatientComponent,
+    PatientBasicInfoComponent
   ],
   imports: [
     AlertModule,
