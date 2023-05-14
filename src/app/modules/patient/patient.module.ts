@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientBasicInfoComponent } from './components/create/patient.basic.info/patient-basic-info.component';
 import { PatientIdInfoComponent } from './components/create/patient.id.info/patient-id-info.component';
 import { PatientContactInfoComponent } from './components/create/patient.contact.info/patient-contact-info.component';
+import { PatientEmergencyInfoComponent } from './components/create/patient.emergency.info/patient-emergency-info.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PatientContactInfoComponent } from './components/create/patient.contact
     CreatePatientComponent,
     PatientBasicInfoComponent,
     PatientIdInfoComponent,
-    PatientContactInfoComponent
+    PatientContactInfoComponent,
+    PatientEmergencyInfoComponent
   ],
   imports: [
     AlertModule,
