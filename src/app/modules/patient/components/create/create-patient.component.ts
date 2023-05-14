@@ -35,7 +35,7 @@ export class CreatePatientComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getInsuranceCompanyAddresses(pushedAddress: any) {
+  getPatientAddresses(pushedAddress: any) {
 
   }
 }
