@@ -20,17 +20,6 @@ export class CreateInsuranceCompanyComponent implements OnInit {
   typeKeys = Object.values;
   types = InsuranceCompanyType;
   addresses: Address[];
-  insuranceCompanyAddress: Address = {
-    addressType: null,
-    other: null,
-    firstAddress: null,
-    secondAddress: null,
-    country: null,
-    city: null,
-    province: null,
-    state: null,
-    zipCode: null
-  }
   insuranceCompany: InsuranceCompany = {
     id: null,
     name: null,

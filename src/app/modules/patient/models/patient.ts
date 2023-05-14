@@ -22,7 +22,7 @@ export interface Patient {
     addresses: Address[];
     contacts: Contact[];
     emergencies: Emergency[];
-    dependent: Dependent;
+    dependent: Dependent |null;
     clinicsId: number[];
     patientCaseModels: PatientCase[];
     patientInsuranceModels: PatientInsurance[];

@@ -12,9 +12,18 @@ export class AddressComponent implements OnInit {
   states: string[] = States;
   addressKeys = Object.values;
   addressTypes = AddressType;
-  @Input() address: Address
+  address: Address = {
+    addressType: null,
+    other: null,
+    firstAddress: null,
+    secondAddress: null,
+    country: null,
+    city: null,
+    province: null,
+    state: null,
+    zipCode: null
+  }
   @Input() addresses: Address[] = []
-  @Input() reset: boolean;
   @ViewChild('addressForm') addressForm: NgForm;
   @Output() pushedAddresses = new EventEmitter<Address[]>();
 
@@ -27,7 +36,7 @@ export class AddressComponent implements OnInit {
       this.pushedAddresses.emit(this.addresses);
     }
   }
-  remove(index:number){
+  remove(index: number) {
     this.addresses.splice(index, 1);
   }
   ngOnInit(): void {

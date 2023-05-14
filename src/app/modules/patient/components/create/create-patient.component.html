@@ -37,7 +37,8 @@
                     <h3>Address Information</h3>
                 </c-card-header>
                 <c-card-body>
-
+                    <app-address #addressComp  [addresses]="patient.addresses"
+                    (pushedAddresses)="getInsuranceCompanyAddresses($event)"></app-address>
                 </c-card-body>
             </c-card>
         </c-col>
