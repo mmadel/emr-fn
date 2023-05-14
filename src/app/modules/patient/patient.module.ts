@@ -24,6 +24,7 @@ import { PatientContactInfoComponent } from './components/create/patient.contact
 import { PatientEmergencyInfoComponent } from './components/create/patient.emergency.info/patient-emergency-info.component';
 import { PatientInsuranceInfoComponent } from './components/create/patient.insurance.info/patient-insurance-info.component';
 import { PatientClinicInfoComponent } from './components/create/patient.clinic.info/patient-clinic-info.component';
+import { PatientCaseInfoComponent } from './components/create/patient.case.info/patient-case-info.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PatientClinicInfoComponent } from './components/create/patient.clinic.i
     PatientContactInfoComponent,
     PatientEmergencyInfoComponent,
     PatientInsuranceInfoComponent,
-    PatientClinicInfoComponent
+    PatientClinicInfoComponent,
+    PatientCaseInfoComponent
   ],
   imports: [
     AlertModule,
