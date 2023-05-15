@@ -1,8 +1,4 @@
-<c-form-check>
-    <input cFormCheckInput id="checkOne" type="checkbox" />
-    <label cFormCheckLabel for="checkOne">Clinic 1</label>
-</c-form-check>
-<c-form-check>
-    <input cFormCheckInput id="checkTwo" type="checkbox" />
-    <label cFormCheckLabel for="checkTwo">Clinic 2</label>
-</c-form-check>
+<c-multi-select multiple [(ngModel)]="patient.clinicsId" placeholder="Select Clinic(s)">
+    <c-multi-select-option *ngFor="let clinic of clinics" [value]="clinic.name">
+        {{clinic.name}}</c-multi-select-option>
+</c-multi-select>

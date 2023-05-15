@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Clinic } from '../../../models/clinic';
 import { Patient } from '../../../models/patient';
 
 @Component({
@@ -8,6 +9,14 @@ import { Patient } from '../../../models/patient';
 })
 export class PatientClinicInfoComponent implements OnInit {
   @Input() patient: Patient;
+  clinics: Clinic[] = [{
+    id: 1,
+    name: "clinic1"
+  },
+  {
+    id: 2,
+    name: "clinic2"
+  }]
   constructor() { }
 
   ngOnInit(): void {

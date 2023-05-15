@@ -10,7 +10,8 @@ import {
   UtilitiesModule,
   DatePickerModule,
   DateRangePickerModule,
-  ButtonGroupModule
+  ButtonGroupModule,
+  MultiSelectModule,
 } from '@coreui/angular-pro';
 
 import { EmrCommonModule } from '../common/emr-common.module';
@@ -73,6 +74,7 @@ const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
     DatePickerModule,
     DateRangePickerModule,
     ButtonGroupModule,
+    MultiSelectModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
   ]
