@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AutoApplyModifier } from 'src/app/modules/common/models/enums/auto.apply.modifier';
 import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
 import { ReferringPartyType } from 'src/app/modules/common/models/enums/referring.party.type';
@@ -34,11 +35,16 @@ export class PatientCaseInfoComponent implements OnInit {
       referringPartyType: null,
       doctorType: ''
     },
-    caseOtherInformation: null
+    caseOtherInformation: {
+      isAuthorized: null,
+      addInfoForChart: null,
+      autoApplyModifier: null
+    }
   }
   palceOfServices = PlaceOfService;
   injuryCase = InjuryCase;
   referringParty = ReferringPartyType;
+  autoApplyModifier = AutoApplyModifier;
   constructor() { }
 
   ngOnInit(): void {

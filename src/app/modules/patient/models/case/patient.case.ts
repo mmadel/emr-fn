@@ -15,5 +15,5 @@ export interface PatientCase {
     caseInsuranceInformation: CaseInsuranceInformation;
     caseDiagnosis: CaseDiagnosis[] | null;
     referralCase: ReferralCase ;
-    caseOtherInformation: CaseOtherInformation | null;
+    caseOtherInformation: CaseOtherInformation;
 }

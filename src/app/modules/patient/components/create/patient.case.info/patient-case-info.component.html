@@ -90,7 +90,7 @@
     </c-card-body>
 </c-card>
 
-<c-card cBorder="primary">
+<c-card cBorder="primary" class="mb-2">
     <c-card-body>
         <h6 cCardTitle>
             <strong>Case Referral Information</strong>
@@ -168,6 +168,33 @@
                 sizing="sm" required
                 [ngClass]="{'is-invalid': referringemail.invalid && (referringemail.dirty || referringemail.touched)}"
                 #referringemail="ngModel" [(ngModel)]="case.referralCase.email" />
+        </c-input-group>
+    </c-card-body>
+</c-card>
+
+<c-card cBorder="primary">
+    <c-card-body>
+        <h6 cCardTitle>
+            <strong>Other Information</strong>
+        </h6>
+        <c-form-check [switch]="true" class="mb-2">
+            <input cFormCheckInput type="checkbox" [(ngModel)]="case.caseOtherInformation.isAuthorized" />
+            <label cFormCheckLabel>Authorization Required</label>
+        </c-form-check>
+
+        <textarea class="mb-2" placeholder="Additional Information For Chart" cFormControl id="caseaddtionalInfo"
+            name="caseaddtionalInfo" sizing="sm"
+            [ngClass]="{'is-invalid': caseaddtionalInfo.invalid && (caseaddtionalInfo.dirty || caseaddtionalInfo.touched)}"
+            #caseaddtionalInfo="ngModel" [(ngModel)]="case.caseOtherInformation.addInfoForChart"></textarea>
+
+        <c-input-group class="mb-3">
+            <select cFormControl cSelect sizing="sm" id="referringPartyType" name="referringPartyType" 
+                [(ngModel)]="case.caseOtherInformation.autoApplyModifier" #referringPartyType="ngModel">
+                <option [ngValue]="null" disabled selected>Select Auto Apply Modifier</option>
+                <option *ngFor="let autoApplyModifierVal of autoApplyModifier | keyvalue" [ngValue]="autoApplyModifierVal.key">
+                    {{autoApplyModifierVal.value}}
+                </option>
+            </select>
         </c-input-group>
     </c-card-body>
 </c-card>
