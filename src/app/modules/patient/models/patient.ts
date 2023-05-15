@@ -25,7 +25,9 @@ export interface Patient {
     idType: IdType | null;
     patientId: string;
     effectiveFromDate: number;
+    effectiveFromDate_Date: Date | null;
     effectiveToDate: number;
+    effectiveToDate_Date: Date | null;
     addresses: Address[];
     contacts: Contact[];
     emergencies: Emergency[];

@@ -8,7 +8,7 @@ import { Patient } from '../../models/patient';
 })
 export class CreatePatientComponent implements OnInit {
 
-  private _patient: Patient = {
+  patient: Patient = {
     id: 0,
     firstName: '',
     middleName: '',
@@ -19,11 +19,13 @@ export class CreatePatientComponent implements OnInit {
     suffix: null,
     employerName: '',
     title: null,
-    addtionalInfo:'',
+    addtionalInfo: '',
     idType: null,
     patientId: '',
     effectiveFromDate: 0,
+    effectiveFromDate_Date: null,
     effectiveToDate: 0,
+    effectiveToDate_Date: null,
     addresses: [],
     contacts: [],
     emergencies: [],
@@ -47,12 +49,6 @@ export class CreatePatientComponent implements OnInit {
     patientCaseModels: [],
     patientInsuranceModels: []
   };
-  public get patient(): Patient {
-    return this._patient;
-  }
-  public set patient(value: Patient) {
-    this._patient = value;
-  }
   constructor() { }
 
   ngOnInit(): void {

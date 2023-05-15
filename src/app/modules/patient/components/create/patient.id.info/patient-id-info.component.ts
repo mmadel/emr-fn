@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IdType } from 'src/app/modules/common/models/enums/id.type';
+import { Patient } from '../../../models/patient';
 
 @Component({
   selector: 'app-patient-id-info',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient-id-info.component.css']
 })
 export class PatientIdInfoComponent implements OnInit {
-
+  @Input() patient: Patient;
+  idTypeKeys = Object.values;
+  idTypes= IdType;
   constructor() { }
 
   ngOnInit(): void {
