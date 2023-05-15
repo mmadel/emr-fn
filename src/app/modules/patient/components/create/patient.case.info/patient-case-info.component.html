@@ -44,7 +44,7 @@
     </c-card-body>
 </c-card>
 
-<c-card cBorder="primary">
+<c-card cBorder="primary" class="mb-2">
     <c-card-body>
         <h6 cCardTitle>
             <strong>Case Insurance Information</strong>
@@ -87,5 +87,87 @@
                 <option [ngValue]="null" disabled selected>Select Primary Insurance</option>
             </select>
         </span>
+    </c-card-body>
+</c-card>
+
+<c-card cBorder="primary">
+    <c-card-body>
+        <h6 cCardTitle>
+            <strong>Case Referral Information</strong>
+        </h6>
+        <small *ngIf="referringPartyType.invalid && (referringPartyType.dirty || referringPartyType.touched)"
+            class="form-text text-danger">
+            Referring Party Type is required
+        </small>
+        <c-input-group class="mb-3">
+            <select cFormControl cSelect sizing="sm" id="referringPartyType" name="referringPartyType" required
+                [ngClass]="{'is-invalid': referringPartyType.invalid && (referringPartyType.dirty || referringPartyType.touched)}"
+                [(ngModel)]="case.referralCase.referringPartyType" #referringPartyType="ngModel">
+                <option [ngValue]="null" disabled selected>Select Referring PartyType</option>
+                <option *ngFor="let referringParty of referringParty | keyvalue" [ngValue]="referringParty.key">
+                    {{referringParty.value}}
+                </option>
+            </select>
+        </c-input-group>
+
+        <small *ngIf="referringPartyName.invalid && (referringPartyName.dirty || referringPartyName.touched)"
+            class="form-text text-danger">
+            Referring Party Name is required
+        </small>
+        <c-input-group class="mb-3">
+            <input autoComplete="name" cFormControl id="referringPartyName" referringPartyName="name" sizing="sm"
+                placeholder="Referring PartyName" required
+                [ngClass]="{'is-invalid': referringPartyName.invalid && (referringPartyName.dirty || referringPartyName.touched)}"
+                [(ngModel)]="case.referralCase.referringPartyName" #referringPartyName="ngModel" />
+        </c-input-group>
+
+        <small *ngIf="referringNPI.invalid && (referringNPI.dirty || referringNPI.touched)"
+            class="form-text text-danger">
+            NPI is required
+        </small>
+        <c-input-group class="mb-3">
+            <input autoComplete="name" cFormControl id="referringNPI" name="referringNPI" sizing="sm"
+                placeholder="Referring NPI" required
+                [ngClass]="{'is-invalid': referringNPI.invalid && (referringNPI.dirty || referringNPI.touched)}"
+                [(ngModel)]="case.referralCase.referringPartyNPI" #referringNPI="ngModel" />
+        </c-input-group>
+
+        <small *ngIf="referringPhone.invalid && (referringPhone.dirty || referringPhone.touched)"
+            class="form-text text-danger">
+            Referring Phone is required
+        </small>
+        <c-input-group class="mb-3" sizing="sm">
+            <span cInputGroupText id="basic-addon1">+1</span>
+            <input placeholder="Enter Referring Phone" cFormControl id="referringPhone" name="referringPhone"
+                sizing="sm" required
+                [ngClass]="{'is-invalid': referringPhone.invalid && (referringPhone.dirty || referringPhone.touched)}"
+                #referringPhone="ngModel" [ngModel]="case.referralCase.phone| phone"
+                (ngModelChange)="case.referralCase.phone=$event" maxlength="15" />
+        </c-input-group>
+
+        <small *ngIf="referringPhone.invalid && (referringPhone.dirty || referringPhone.touched)"
+            class="form-text text-danger">
+            Referring Fax is required
+        </small>
+        <c-input-group class="mb-3" sizing="sm">
+            <span cInputGroupText id="basic-addon1">+1</span>
+            <input placeholder="Enter Referring Fax" cFormControl id="referringFax" name="referringFax" sizing="sm"
+                required
+                [ngClass]="{'is-invalid': referringFax.invalid && (referringFax.dirty || referringFax.touched)}"
+                #referringFax="ngModel" [ngModel]="case.referralCase.fax| phone"
+                (ngModelChange)="case.referralCase.fax=$event" maxlength="15" />
+        </c-input-group>
+
+        <small *ngIf="referringemail.invalid && (referringemail.dirty || referringemail.touched)"
+            class="form-text text-danger">
+            Referring Email is required
+        </small>
+        <c-input-group class="mb-3" sizing="sm">
+            <span cInputGroupText id="basic-addon1">@</span>
+            <input type="email" placeholder="Enter Contact Email" cFormControl id="referringemail" name="referringemail"
+                sizing="sm" required
+                [ngClass]="{'is-invalid': referringemail.invalid && (referringemail.dirty || referringemail.touched)}"
+                #referringemail="ngModel" [(ngModel)]="case.referralCase.email" />
+        </c-input-group>
     </c-card-body>
 </c-card>

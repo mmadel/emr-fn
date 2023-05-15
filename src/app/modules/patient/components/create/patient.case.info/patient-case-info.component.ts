@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
+import { ReferringPartyType } from 'src/app/modules/common/models/enums/referring.party.type';
 import { PatientCase } from '../../../models/case/patient.case';
 import { Patient } from '../../../models/patient';
 
@@ -24,11 +25,20 @@ export class PatientCaseInfoComponent implements OnInit {
       secondaryInsurance: null
     },
     caseDiagnosis: [],
-    referralCase: null,
+    referralCase: {
+      referringPartyName: null,
+      referringPartyNPI: null,
+      phone: null,
+      fax: null,
+      email: null,
+      referringPartyType: null,
+      doctorType: ''
+    },
     caseOtherInformation: null
   }
   palceOfServices = PlaceOfService;
   injuryCase = InjuryCase;
+  referringParty = ReferringPartyType;
   constructor() { }
 
   ngOnInit(): void {

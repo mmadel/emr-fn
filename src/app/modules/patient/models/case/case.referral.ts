@@ -1,9 +1,11 @@
+import { ReferringPartyType } from "src/app/modules/common/models/enums/referring.party.type";
+
 export interface ReferralCase {
-    referringPartyName: string;
-    referringPartyNPI: string;
-    phone: string;
-    fax: string;
-    email: string;
-    referringPartyType: string;
-    doctorType: string;
-  }
+  referringPartyName: string | null;
+  referringPartyNPI: string | null;
+  phone: string | null;
+  fax: string | null;
+  email: string | null;
+  referringPartyType: ReferringPartyType | null;
+  doctorType: string | null;
+}
