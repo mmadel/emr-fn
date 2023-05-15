@@ -1,1 +1,57 @@
-<p>patient-basic-info works!</p>
+<small *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="form-text text-danger">
+    First Name is required
+</small>
+<small *ngIf="middleName.invalid && (middleName.dirty || middleName.touched)" class="form-text text-danger">
+    Middle Name is required
+</small>
+<small *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="form-text text-danger">
+    Last Name is required
+</small>
+<c-input-group class="mb-3" sizing="sm">
+    <span cInputGroupText>First Middle Last</span>
+    <input cFormControl id="firstName" name="firstName" sizing="sm" placeholder="First Name" required
+        [ngClass]="{'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched)}"
+        [(ngModel)]="patient.firstName" #firstName="ngModel" />
+
+    <input cFormControl id="middleName" name="middleName" sizing="sm" placeholder="Middle Name" required
+        [ngClass]="{'is-invalid': middleName.invalid && (middleName.dirty || middleName.touched)}"
+        [(ngModel)]="patient.middleName" #middleName="ngModel" />
+
+    <input cFormControl id="lastName" name="lastName" sizing="sm" placeholder="Last Name" required
+        [ngClass]="{'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched)}"
+        [(ngModel)]="patient.lastName" #lastName="ngModel" />
+</c-input-group>
+<small *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)" class="form-text text-danger">
+    BirthDate is required
+</small>
+<c-col xs="auto" class="mb-2">
+    <c-date-picker cFormControl closeOnSelect size="sm" placeholder="Date Of Birth" FormControl id="birthDate"
+        name="birthDate" required
+        [ngClass]="{'is-invalid': birthDate.invalid && (birthDate.dirty || birthDate.touched)}"
+        [(ngModel)]="patient.birthDate" #birthDate="ngModel"></c-date-picker>
+</c-col>
+<small *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="form-text text-danger">
+    Gender is required
+</small>
+
+<select cFormControl cSelect class="mb-2" sizing="sm" id="gender" name="gender" required
+    [ngClass]="{'is-invalid': gender.invalid && (gender.dirty || gender.touched)}" [(ngModel)]="patient.gender"
+    #gender="ngModel">
+    <option [ngValue]="null" disabled selected>Select Gender</option>
+    <option *ngFor="let ddd of genderKeys(genders)" [ngValue]="ddd">
+        {{genders[ddd]}}
+    </option>
+</select>
+
+<small *ngIf="maritalStatus.invalid && (maritalStatus.dirty || maritalStatus.touched)" class="form-text text-danger">
+    MaritalStatus is required
+</small>
+
+<select cFormControl cSelect sizing="sm" id="gender" name="gender" required
+    [ngClass]="{'is-invalid': maritalStatus.invalid && (maritalStatus.dirty || maritalStatus.touched)}"
+    [(ngModel)]="patient.maritalStatus" #maritalStatus="ngModel">
+    <option [ngValue]="null" disabled selected>Select MaritalStatus</option>
+    <option *ngFor="let maritalStatusValue of maritalStatusKeys(maritalStatuses)" [ngValue]="maritalStatusValue">
+        {{maritalStatuses[maritalStatusValue]}}
+    </option>
+</select>

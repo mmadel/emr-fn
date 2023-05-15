@@ -24,7 +24,7 @@ const APP_COMMON_DIRECTIVES = [
   declarations: [
     APP_COMMON_COMPONENTS,
     ...APP_COMMON_PIPES,
-    ...APP_COMMON_DIRECTIVES
+    ...APP_COMMON_DIRECTIVES,
   ],
 
   imports: [

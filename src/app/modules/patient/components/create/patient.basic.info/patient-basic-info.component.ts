@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Gender } from 'src/app/modules/common/models/enums/geneder';
+import { MaritalStatus } from 'src/app/modules/common/models/enums/marital.status';
+import { Patient } from '../../../models/patient';
 
 @Component({
   selector: 'app-patient-basic-info',
@@ -6,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient-basic-info.component.css']
 })
 export class PatientBasicInfoComponent implements OnInit {
-
+  @Input() patient: Patient;
+  genderKeys = Object.values;
+  genders = Gender;
+  maritalStatusKeys = Object.values;
+  maritalStatuses= MaritalStatus;
   constructor() { }
 
   ngOnInit(): void {

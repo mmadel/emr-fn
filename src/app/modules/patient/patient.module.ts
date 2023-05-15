@@ -7,7 +7,8 @@ import {
   AlertModule, ButtonModule,
   CardModule, FormModule, GridModule,
   SharedModule, SmartPaginationModule, SmartTableModule, TableModule,
-  UtilitiesModule
+  UtilitiesModule,
+  DatePickerModule,
 } from '@coreui/angular-pro';
 
 import { EmrCommonModule } from '../common/emr-common.module';
@@ -67,6 +68,7 @@ const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
     TableModule,
     UtilitiesModule,
     IconModule,
+    DatePickerModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
   ]

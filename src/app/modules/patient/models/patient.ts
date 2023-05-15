@@ -1,4 +1,6 @@
 import { Address } from "../../common/models";
+import { Gender } from "../../common/models/enums/geneder";
+import { MaritalStatus } from "../../common/models/enums/marital.status";
 import { PatientCase } from "./case/patient.case";
 import { Dependent } from "./dependent/patient.dependent";
 import { Emergency } from "./emergency/patient.emergency";
@@ -11,7 +13,8 @@ export interface Patient {
     middleName: string;
     lastName: string;
     birthDate: number;
-    maritalStatus: string;
+    gender: Gender | null;
+    maritalStatus: MaritalStatus | null;
     suffix: string;
     employerName: string;
     title: string;
@@ -22,7 +25,7 @@ export interface Patient {
     addresses: Address[];
     contacts: Contact[];
     emergencies: Emergency[];
-    dependent: Dependent |null;
+    dependent: Dependent | null;
     clinicsId: number[];
     patientCaseModels: PatientCase[];
     patientInsuranceModels: PatientInsurance[];
