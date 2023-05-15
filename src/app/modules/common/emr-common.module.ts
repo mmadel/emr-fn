@@ -17,10 +17,12 @@ import { ZipcodeDirective } from './directives/zipcode.directive';
 import { NumberonlyDirective } from './directives/numberonly.directive';
 import { IconModule } from '@coreui/icons-angular';
 import { SingleAddressComponent } from './components/single.address/single-address.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const APP_COMMON_COMPONENTS = [
   AddressComponent,
-  SingleAddressComponent
+  SingleAddressComponent,
+  ContactComponent
 ]
 
 const APP_COMMON_PIPES = [
