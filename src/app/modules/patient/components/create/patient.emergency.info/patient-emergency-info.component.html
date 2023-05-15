@@ -19,8 +19,8 @@
             [ngClass]="{'is-invalid': emergencyPhoneType.invalid && (emergencyPhoneType.dirty || emergencyPhoneType.touched)}"
             [(ngModel)]="emergency.phoneType" #emergencyPhoneType="ngModel">
             <option [ngValue]="null" disabled selected>Select Phone Type</option>
-            <option *ngFor="let phoneType of phoneTypeKeys(phoneTypes)" [ngValue]="phoneType">
-                {{phoneTypes[phoneType]}}
+            <option *ngFor="let phoneType of phoneTypes | keyvalue" [ngValue]="phoneType.key">
+                {{phoneType.value}}
             </option>
         </select>
     </c-input-group>

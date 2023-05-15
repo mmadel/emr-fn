@@ -38,8 +38,8 @@
             [ngClass]="{'is-invalid': paymentType.invalid && (paymentType.dirty || paymentType.touched)}"
             [(ngModel)]="patientInsurance.paymentType" #paymentType="ngModel">
             <option [ngValue]="null" disabled selected>Select Phone Type</option>
-            <option *ngFor="let paymentType of paymentTypeKeys(PaymentTypes)" [ngValue]="paymentType">
-                {{PaymentTypes[paymentType]}}
+            <option *ngFor="let paymentType of PaymentTypes | keyvalue" [ngValue]="paymentType.key">
+                {{paymentType.value}}
             </option>
         </select>
     </c-input-group>

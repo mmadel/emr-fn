@@ -17,8 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class CreateInsuranceCompanyComponent implements OnInit {
   @ViewChild('insuranceCompanyCreateForm') insuranceCompanyCreateForm: NgForm;
   @ViewChild('addressComp') addpressComp: AddressComponent;
-  typeKeys = Object.values;
-  types = InsuranceCompanyType;
+  insuranceCompanytypes = InsuranceCompanyType;
   addresses: Address[];
   insuranceCompany: InsuranceCompany = {
     id: null,

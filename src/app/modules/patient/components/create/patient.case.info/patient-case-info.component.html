@@ -1,1 +1,30 @@
-<p>patient-case-info works!</p>
+<c-card cBorder="primary">
+    <c-card-body>
+        <h6 cCardTitle>
+            <strong>Case Essential Information</strong>
+        </h6>
+        <small *ngIf="caseTitle.invalid && (caseTitle.dirty || caseTitle.touched)" class="form-text text-danger">
+            Title is required
+        </small>
+        <c-input-group class="mb-3">
+            <input autoComplete="name" cFormControl id="name" name="name" sizing="sm" placeholder="Other Address"
+                required [ngClass]="{'is-invalid': caseTitle.invalid && (caseTitle.dirty || caseTitle.touched)}"
+                [(ngModel)]="case.title" #caseTitle="ngModel" />
+        </c-input-group>
+
+        <small *ngIf="casePlaceOfService.invalid && (casePlaceOfService.dirty || casePlaceOfService.touched)"
+            class="form-text text-danger">
+            Place Of Service is required
+        </small>
+        <c-input-group class="mb-3">
+            <select cFormControl cSelect sizing="sm" id="casePlaceOfService" name="casePlaceOfService" required
+                [ngClass]="{'is-invalid': casePlaceOfService.invalid && (casePlaceOfService.dirty || casePlaceOfService.touched)}"
+                [(ngModel)]="case.placeOfService" #casePlaceOfService="ngModel">
+                <option [ngValue]="null" disabled selected>Select Place Of Service</option>
+                <option *ngFor="let palceOfService of palceOfServices | keyvalue" [ngValue]="palceOfService.key">
+                    {{palceOfService.value }}
+                </option>
+            </select>
+        </c-input-group>
+    </c-card-body>
+</c-card>

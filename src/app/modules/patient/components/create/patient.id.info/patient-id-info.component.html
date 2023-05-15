@@ -6,8 +6,8 @@
     [ngClass]="{'is-invalid': idType.invalid && (idType.dirty || idType.touched)}" [(ngModel)]="patient.idType"
     #idType="ngModel">
     <option [ngValue]="null" disabled selected>Select Id Type</option>
-    <option *ngFor="let idtype of idTypeKeys(idTypes)" [value]="idtype">
-        {{idTypes[idtype]}}
+    <option *ngFor="let idtype of idTypes | keyvalue" [value]="idtype.key">
+        idtype.value
     </option>
 </select>
 

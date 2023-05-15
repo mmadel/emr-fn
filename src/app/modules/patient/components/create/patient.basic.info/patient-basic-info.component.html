@@ -64,8 +64,8 @@
     [ngClass]="{'is-invalid': suffix.invalid && (suffix.dirty || suffix.touched)}" [(ngModel)]="patient.suffix"
     #suffix="ngModel">
     <option [ngValue]="null" disabled selected>Select Suffix</option>
-    <option *ngFor="let value of suffixKeys(maritalStatuses)" [value]="value">
-        {{maritalStatuses[value]}}
+    <option *ngFor="let suffixValue of suffix | keyvalue" [value]="suffixValue.key">
+        {{suffixValue.value}}
     </option>
 </select>
 
@@ -85,8 +85,8 @@
     [ngClass]="{'is-invalid': title.invalid && (title.dirty || title.touched)}" [(ngModel)]="patient.title"
     #title="ngModel">
     <option [ngValue]="null" disabled selected>Select Title</option>
-    <option *ngFor="let titleValue of titleKeys(titles)" [value]="titleValue">
-        {{titles[titleValue]}}
+    <option *ngFor="let titleValue of titles | keyvalue" [value]="titleValue.key">
+        {{titleValue.value}}
     </option>
 </select>
 <c-form-check [switch]="true">

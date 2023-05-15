@@ -11,7 +11,6 @@ import { Patient } from '../../../models/patient';
 })
 export class PatientEmergencyInfoComponent implements OnInit {
   @Input() patient: Patient;
-  phoneTypeKeys = Object.values;
   phoneTypes = PhoneType;
   emergency: Emergency = {
     contactName: '',

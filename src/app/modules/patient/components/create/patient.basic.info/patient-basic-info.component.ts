@@ -17,9 +17,7 @@ export class PatientBasicInfoComponent implements OnInit {
   genders = Gender;
   maritalStatusKeys = Object.values;
   maritalStatuses= MaritalStatus;
-  suffixKeys = Object.values;
-  Suffixes= Suffix;
-  titleKeys = Object.values;
+  suffix= Suffix;
   titles= Title;
   
   constructor() { }

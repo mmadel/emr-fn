@@ -34,8 +34,8 @@
                                 [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}"
                                 [(ngModel)]="insuranceCompany.insuranceType" #type="ngModel">
                                 <option [ngValue]="null" disabled selected>Select insurance Company Type</option>
-                                <option *ngFor="let type of typeKeys(types)" [ngValue]="type">
-                                    {{types[type]}}
+                                <option *ngFor="let insuranceCompanytype of insuranceCompanytypes | keyvalue" [ngValue]="insuranceCompanytype.key">
+                                    {{insuranceCompanytype.value}}
                                 </option>
                             </select>
                         </c-input-group>

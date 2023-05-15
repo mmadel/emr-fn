@@ -10,7 +10,6 @@ import { Patient } from '../../../models/patient';
   styleUrls: ['./patient-insurance-info.component.css']
 })
 export class PatientInsuranceInfoComponent implements OnInit {
-  paymentTypeKeys = Object.values;
   PaymentTypes = PaymentType;
   @Input() patient: Patient;
   patientInsurance:PatientInsurance={

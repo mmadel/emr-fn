@@ -9,7 +9,6 @@ import { PhoneType } from '../../models/enums/phone.type';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  phoneTypeKeys = Object.values;
   phoneTypes = PhoneType;
   contact: Contact = {
     phoneType: null,

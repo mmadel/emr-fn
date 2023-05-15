@@ -9,7 +9,6 @@ import { Patient } from '../../../models/patient';
 })
 export class PatientIdInfoComponent implements OnInit {
   @Input() patient: Patient;
-  idTypeKeys = Object.values;
   idTypes= IdType;
   constructor() { }
 

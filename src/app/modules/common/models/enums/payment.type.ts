@@ -1,4 +1,4 @@
 export enum PaymentType {
-    Copay = "Copay",
-    Coinsurance = "Coinsurance"
+    COPAY = "Copay",
+    COINSURANCE = "Coinsurance"
 }
