@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Gender } from 'src/app/modules/common/models/enums/geneder';
+import { IdType } from 'src/app/modules/common/models/enums/id.type';
 import { MaritalStatus } from 'src/app/modules/common/models/enums/marital.status';
 import { Suffix } from 'src/app/modules/common/models/enums/suffix';
 import { Title } from 'src/app/modules/common/models/enums/title';
@@ -20,6 +21,7 @@ export class PatientBasicInfoComponent implements OnInit {
   Suffixes= Suffix;
   titleKeys = Object.values;
   titles= Title;
+  
   constructor() { }
 
   ngOnInit(): void {

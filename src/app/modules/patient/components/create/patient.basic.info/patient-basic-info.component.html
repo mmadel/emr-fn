@@ -89,3 +89,18 @@
         {{titles[titleValue]}}
     </option>
 </select>
+<c-form-check [switch]="true">
+    <input cFormCheckInput type="checkbox" [(ngModel)]="patient.isDependent" />
+    <label cFormCheckLabel>Dependent</label>
+</c-form-check>
+
+<span *ngIf="patient.isDependent">
+    <small *ngIf="dependentName.invalid && (dependentName.dirty || dependentName.touched)"
+        class="form-text text-danger">
+        Dependent-Name is required
+    </small>
+    <input class="mb-2" placeholder="Enter Dependent Name" cFormControl id="dependentName" name="dependentName"
+        sizing="sm" required
+        [ngClass]="{'is-invalid': dependentName.invalid && (dependentName.dirty || dependentName.touched)}"
+        #dependentName="ngModel" [(ngModel)]="patient.dependent.name" />
+</span>

@@ -1,5 +1,6 @@
 import { Address } from "../../common/models";
 import { Gender } from "../../common/models/enums/geneder";
+import { IdType } from "../../common/models/enums/id.type";
 import { MaritalStatus } from "../../common/models/enums/marital.status";
 import { Suffix } from "../../common/models/enums/suffix";
 import { Title } from "../../common/models/enums/title";
@@ -20,14 +21,15 @@ export interface Patient {
     suffix: Suffix | null;
     employerName: string;
     title: Title | null;
-    idType: string;
+    idType: IdType | null;
     patientId: string;
     effectiveFromDate: number;
     effectiveToDate: number;
     addresses: Address[];
     contacts: Contact[];
     emergencies: Emergency[];
-    dependent: Dependent | null;
+    isDependent : boolean
+    dependent: Dependent ;
     clinicsId: number[];
     patientCaseModels: PatientCase[];
     patientInsuranceModels: PatientInsurance[];
