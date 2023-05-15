@@ -72,6 +72,20 @@
 <small *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" class="form-text text-danger">
     Employer-Name is required
 </small>
-<input  class="mb-2" placeholder="Enter Employer Name" cFormControl id="employerName" name="employerName" sizing="sm" required
-    [ngClass]="{'is-invalid': employerName.invalid && (employerName.dirty || employerName.touched)}"
+<input class="mb-2" placeholder="Enter Employer Name" cFormControl id="employerName" name="employerName" sizing="sm"
+    required [ngClass]="{'is-invalid': employerName.invalid && (employerName.dirty || employerName.touched)}"
     #employerName="ngModel" [(ngModel)]="patient.employerName" />
+
+
+<small *ngIf="title.invalid && (title.dirty || title.touched)" class="form-text text-danger">
+    Title is required
+</small>
+
+<select cFormControl cSelect class="mb-2" sizing="sm" id="title" name="title" required
+    [ngClass]="{'is-invalid': title.invalid && (title.dirty || title.touched)}" [(ngModel)]="patient.title"
+    #title="ngModel">
+    <option [ngValue]="null" disabled selected>Select Title</option>
+    <option *ngFor="let titleValue of titleKeys(titles)" [value]="titleValue">
+        {{titles[titleValue]}}
+    </option>
+</select>

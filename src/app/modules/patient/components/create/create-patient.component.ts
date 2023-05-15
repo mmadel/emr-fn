@@ -18,7 +18,7 @@ export class CreatePatientComponent implements OnInit {
     maritalStatus: null,
     suffix: null,
     employerName: '',
-    title: '',
+    title: null,
     idType: '',
     patientId: '',
     effectiveFromDate: 0,

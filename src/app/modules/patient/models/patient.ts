@@ -2,6 +2,7 @@ import { Address } from "../../common/models";
 import { Gender } from "../../common/models/enums/geneder";
 import { MaritalStatus } from "../../common/models/enums/marital.status";
 import { Suffix } from "../../common/models/enums/suffix";
+import { Title } from "../../common/models/enums/title";
 import { PatientCase } from "./case/patient.case";
 import { Dependent } from "./dependent/patient.dependent";
 import { Emergency } from "./emergency/patient.emergency";
@@ -18,7 +19,7 @@ export interface Patient {
     maritalStatus: MaritalStatus | null;
     suffix: Suffix | null;
     employerName: string;
-    title: string;
+    title: Title | null;
     idType: string;
     patientId: string;
     effectiveFromDate: number;
