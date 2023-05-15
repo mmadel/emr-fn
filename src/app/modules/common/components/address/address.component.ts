@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, Self, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NgControl, NgForm } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Address, AddressType, Countries, Country, States } from '../../models';
 
 @Component({

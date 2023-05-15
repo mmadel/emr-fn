@@ -2,14 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PhonePipe } from './pips/phone.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule, ButtonModule, FormModule, GridModule, TableModule, UtilitiesModule, ButtonGroupModule } from '@coreui/angular-pro';
+import {
+  SharedModule,
+  ButtonModule,
+  FormModule,
+  GridModule,
+  TableModule,
+  UtilitiesModule,
+  ButtonGroupModule
+} from '@coreui/angular-pro';
+
 import { AddressComponent } from './components/address/address.component';
 import { ZipcodeDirective } from './directives/zipcode.directive';
 import { NumberonlyDirective } from './directives/numberonly.directive';
 import { IconModule } from '@coreui/icons-angular';
+import { SingleAddressComponent } from './components/single.address/single-address.component';
 
 const APP_COMMON_COMPONENTS = [
   AddressComponent,
+  SingleAddressComponent
 ]
 
 const APP_COMMON_PIPES = [

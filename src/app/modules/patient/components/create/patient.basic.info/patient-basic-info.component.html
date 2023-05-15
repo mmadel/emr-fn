@@ -103,4 +103,23 @@
         sizing="sm" required
         [ngClass]="{'is-invalid': dependentName.invalid && (dependentName.dirty || dependentName.touched)}"
         #dependentName="ngModel" [(ngModel)]="patient.dependent.name" />
+
+    <small *ngIf="dependentPhone.invalid && (dependentPhone.dirty || dependentPhone.touched)"
+        class="form-text text-danger">
+        Dependent Phone is required
+    </small>
+    <c-input-group class="mb-3" sizing="sm">
+        <span cInputGroupText id="basic-addon1">+1</span>
+        <input placeholder="Enter Dependent Phone" cFormControl id="dependentPhone" name="dependentPhone" sizing="sm"
+            required
+            [ngClass]="{'is-invalid': dependentPhone.invalid && (dependentPhone.dirty || dependentPhone.touched)}"
+            #dependentPhone="ngModel" [ngModel]="patient.dependent.phone| phone"
+            (ngModelChange)="patient.dependent.phone=$event" maxlength="15" />
+    </c-input-group>
+
+    <app-single-address [address]="patient.dependent.address"></app-single-address>
 </span>
+
+<textarea class="mb-2" placeholder="Enter Additional Information" cFormControl id="addtionalInfo" name="addtionalInfo"
+    sizing="sm" [ngClass]="{'is-invalid': addtionalInfo.invalid && (addtionalInfo.dirty || addtionalInfo.touched)}"
+    #addtionalInfo="ngModel" [(ngModel)]="patient.addtionalInfo"></textarea>

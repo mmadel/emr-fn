@@ -19,6 +19,7 @@ export class CreatePatientComponent implements OnInit {
     suffix: null,
     employerName: '',
     title: null,
+    addtionalInfo:'',
     idType: null,
     patientId: '',
     effectiveFromDate: 0,
@@ -28,7 +29,17 @@ export class CreatePatientComponent implements OnInit {
     emergencies: [],
     isDependent: false,
     dependent: {
-      address: null,
+      address: {
+        addressType: null,
+        other: null,
+        firstAddress: null,
+        secondAddress: null,
+        country: null,
+        city: null,
+        province: null,
+        state: null,
+        zipCode: null
+      },
       phone: null,
       name: null
     },
