@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
 import { PatientCase } from '../../../models/case/patient.case';
 import { Patient } from '../../../models/patient';
@@ -15,14 +16,14 @@ export class PatientCaseInfoComponent implements OnInit {
     title: '',
     placeOfService: null,
     treatingDoctor: null,
-    injuryCase: '',
+    injuryCase: null,
     caseInsuranceInformation: null,
     caseDiagnosis: [],
     referralCase: null,
     caseOtherInformation: null
   }
-  palceOfServiceValues = Object.values;
   palceOfServices = PlaceOfService;
+  injuryCase = InjuryCase;
   constructor() { }
 
   ngOnInit(): void {

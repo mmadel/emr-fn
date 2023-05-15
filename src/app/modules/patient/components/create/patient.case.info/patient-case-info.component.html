@@ -7,7 +7,7 @@
             Title is required
         </small>
         <c-input-group class="mb-3">
-            <input autoComplete="name" cFormControl id="name" name="name" sizing="sm" placeholder="Other Address"
+            <input autoComplete="name" cFormControl id="name" name="name" sizing="sm" placeholder="Title"
                 required [ngClass]="{'is-invalid': caseTitle.invalid && (caseTitle.dirty || caseTitle.touched)}"
                 [(ngModel)]="case.title" #caseTitle="ngModel" />
         </c-input-group>
@@ -23,6 +23,21 @@
                 <option [ngValue]="null" disabled selected>Select Place Of Service</option>
                 <option *ngFor="let palceOfService of palceOfServices | keyvalue" [ngValue]="palceOfService.key">
                     {{palceOfService.value }}
+                </option>
+            </select>
+        </c-input-group>
+
+        <small *ngIf="caseinjuryCase.invalid && (caseinjuryCase.dirty || caseinjuryCase.touched)"
+            class="form-text text-danger">
+            Injury Case is required
+        </small>
+        <c-input-group class="mb-3">
+            <select cFormControl cSelect sizing="sm" id="casePlaceOfService" name="casePlaceOfService" required
+                [ngClass]="{'is-invalid': caseinjuryCase.invalid && (caseinjuryCase.dirty || caseinjuryCase.touched)}"
+                [(ngModel)]="case.injuryCase" #caseinjuryCase="ngModel">
+                <option [ngValue]="null" disabled selected>Select Injury Cause</option>
+                <option *ngFor="let injuryCase of injuryCase | keyvalue" [ngValue]="injuryCase.key">
+                    {{injuryCase.value }}
                 </option>
             </select>
         </c-input-group>
