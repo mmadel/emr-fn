@@ -1,4 +1,4 @@
-<c-card cBorder="primary">
+<c-card cBorder="primary" class="mb-2">
     <c-card-body>
         <h6 cCardTitle>
             <strong>Case Essential Information</strong>
@@ -7,8 +7,8 @@
             Title is required
         </small>
         <c-input-group class="mb-3">
-            <input autoComplete="name" cFormControl id="name" name="name" sizing="sm" placeholder="Title"
-                required [ngClass]="{'is-invalid': caseTitle.invalid && (caseTitle.dirty || caseTitle.touched)}"
+            <input autoComplete="name" cFormControl id="name" name="name" sizing="sm" placeholder="Title" required
+                [ngClass]="{'is-invalid': caseTitle.invalid && (caseTitle.dirty || caseTitle.touched)}"
                 [(ngModel)]="case.title" #caseTitle="ngModel" />
         </c-input-group>
 
@@ -41,5 +41,51 @@
                 </option>
             </select>
         </c-input-group>
+    </c-card-body>
+</c-card>
+
+<c-card cBorder="primary">
+    <c-card-body>
+        <h6 cCardTitle>
+            <strong>Case Insurance Information</strong>
+        </h6>
+        <c-form-check [switch]="true" class="mb-2">
+            <input cFormCheckInput type="checkbox" [(ngModel)]="case.caseInsuranceInformation.isSelfPay" />
+            <label cFormCheckLabel>SefPayed</label>
+        </c-form-check>
+        <span *ngIf="case.caseInsuranceInformation.isSelfPay">
+            <small *ngIf="selfPayAmount.invalid && (selfPayAmount.dirty || selfPayAmount.touched)"
+                class="form-text text-danger">
+                SelfPay Amount is required
+            </small>
+            <c-input-group class="mb-2">
+                <input class="mb-2" placeholder="Enter SelfPay Amount" cFormControl id="selfPayAmount"
+                    name="selfPayAmount" sizing="sm" required
+                    [ngClass]="{'is-invalid': selfPayAmount.invalid && (selfPayAmount.dirty || selfPayAmount.touched)}"
+                    #selfPayAmount="ngModel" [(ngModel)]="case.caseInsuranceInformation.selfPayAmount" />
+            </c-input-group>
+        </span>
+        <span *ngIf="!case.caseInsuranceInformation.isSelfPay">
+            <small *ngIf="primaryInsurance.invalid && (primaryInsurance.dirty || primaryInsurance.touched)"
+                class="form-text text-danger">
+                Primary Insurance is required
+            </small>
+            <select cFormControl cSelect class="mb-2" sizing="sm" id="primaryInsurance" name="primaryInsurance" required
+                [ngClass]="{'is-invalid': primaryInsurance.invalid && (primaryInsurance.dirty || primaryInsurance.touched)}"
+                [(ngModel)]="case.caseInsuranceInformation.primaryInsurance" #primaryInsurance="ngModel">
+                <option [ngValue]="null" disabled selected>Select Primary Insurance</option>
+            </select>
+
+            <small *ngIf="secondaryInsurance.invalid && (secondaryInsurance.dirty || secondaryInsurance.touched)"
+                class="form-text text-danger">
+                Secondary Insurance is required
+            </small>
+            <select cFormControl cSelect class="mb-2" sizing="sm" id="secondaryInsurance" name="secondaryInsurance"
+                required
+                [ngClass]="{'is-invalid': secondaryInsurance.invalid && (secondaryInsurance.dirty || secondaryInsurance.touched)}"
+                [(ngModel)]="case.caseInsuranceInformation.secondaryInsurance" #secondaryInsurance="ngModel">
+                <option [ngValue]="null" disabled selected>Select Primary Insurance</option>
+            </select>
+        </span>
     </c-card-body>
 </c-card>

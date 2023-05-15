@@ -12,7 +12,7 @@ export interface PatientCase {
     placeOfService: PlaceOfService | null;
     treatingDoctor: TreatingDoctor | null;
     injuryCase: InjuryCase | null;
-    caseInsuranceInformation: CaseInsuranceInformation | null;
+    caseInsuranceInformation: CaseInsuranceInformation;
     caseDiagnosis: CaseDiagnosis[] | null;
     referralCase: ReferralCase | null;
     caseOtherInformation: CaseOtherInformation | null;

@@ -17,7 +17,12 @@ export class PatientCaseInfoComponent implements OnInit {
     placeOfService: null,
     treatingDoctor: null,
     injuryCase: null,
-    caseInsuranceInformation: null,
+    caseInsuranceInformation: {
+      isSelfPay: false,
+      selfPayAmount: null,
+      primaryInsurance: null,
+      secondaryInsurance: null
+    },
     caseDiagnosis: [],
     referralCase: null,
     caseOtherInformation: null
