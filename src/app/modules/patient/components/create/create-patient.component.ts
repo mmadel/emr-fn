@@ -16,7 +16,7 @@ export class CreatePatientComponent implements OnInit {
     birthDate: 0,
     gender:null,
     maritalStatus: null,
-    suffix: '',
+    suffix: null,
     employerName: '',
     title: '',
     idType: '',

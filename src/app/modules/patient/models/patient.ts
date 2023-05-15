@@ -1,6 +1,7 @@
 import { Address } from "../../common/models";
 import { Gender } from "../../common/models/enums/geneder";
 import { MaritalStatus } from "../../common/models/enums/marital.status";
+import { Suffix } from "../../common/models/enums/suffix";
 import { PatientCase } from "./case/patient.case";
 import { Dependent } from "./dependent/patient.dependent";
 import { Emergency } from "./emergency/patient.emergency";
@@ -15,7 +16,7 @@ export interface Patient {
     birthDate: number;
     gender: Gender | null;
     maritalStatus: MaritalStatus | null;
-    suffix: string;
+    suffix: Suffix | null;
     employerName: string;
     title: string;
     idType: string;

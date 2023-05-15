@@ -47,7 +47,7 @@
     MaritalStatus is required
 </small>
 
-<select cFormControl cSelect sizing="sm" id="gender" name="gender" required
+<select cFormControl cSelect class="mb-2" sizing="sm" id="gender" name="gender" required
     [ngClass]="{'is-invalid': maritalStatus.invalid && (maritalStatus.dirty || maritalStatus.touched)}"
     [(ngModel)]="patient.maritalStatus" #maritalStatus="ngModel">
     <option [ngValue]="null" disabled selected>Select MaritalStatus</option>
@@ -55,3 +55,23 @@
         {{maritalStatuses[maritalStatusValue]}}
     </option>
 </select>
+
+<small *ngIf="suffix.invalid && (suffix.dirty || suffix.touched)" class="form-text text-danger">
+    Suffix is required
+</small>
+
+<select cFormControl cSelect class="mb-2" sizing="sm" id="suffix" name="suffix" required
+    [ngClass]="{'is-invalid': suffix.invalid && (suffix.dirty || suffix.touched)}" [(ngModel)]="patient.suffix"
+    #suffix="ngModel">
+    <option [ngValue]="null" disabled selected>Select Suffix</option>
+    <option *ngFor="let value of suffixKeys(maritalStatuses)" [value]="value">
+        {{maritalStatuses[value]}}
+    </option>
+</select>
+
+<small *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" class="form-text text-danger">
+    Employer-Name is required
+</small>
+<input  class="mb-2" placeholder="Enter Employer Name" cFormControl id="employerName" name="employerName" sizing="sm" required
+    [ngClass]="{'is-invalid': employerName.invalid && (employerName.dirty || employerName.touched)}"
+    #employerName="ngModel" [(ngModel)]="patient.employerName" />
