@@ -62,7 +62,7 @@
                     <h3>Emergency Information</h3>
                 </c-card-header>
                 <c-card-body>
-
+                    <app-patient-emergency-info [patient]="patient"></app-patient-emergency-info>
                 </c-card-body>
             </c-card>
         </c-col>
@@ -107,3 +107,4 @@
         <button cButton color="primary" variant="outline" type="submit">Create</button>
     </div>
 </c-container>
+{{patient | json}}
