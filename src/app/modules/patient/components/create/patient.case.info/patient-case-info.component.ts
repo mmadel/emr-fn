@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AutoApplyModifier } from 'src/app/modules/common/models/enums/auto.apply.modifier';
 import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
@@ -13,6 +14,7 @@ import { Patient } from '../../../models/patient';
 })
 export class PatientCaseInfoComponent implements OnInit {
   @Input() pateint: Patient;
+  @ViewChild('caseForm') caseForm: NgForm;
   case: PatientCase = {
     id: 0,
     title: '',
@@ -49,5 +51,14 @@ export class PatientCaseInfoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  add() {
+    if (this.caseForm.valid) {
+      let patientCase: PatientCase = Object.assign({}, this.case);
+      this.pateint.patientCaseModels.push(patientCase);
+      this.caseForm.reset();
+    }
+  }
+  remove(index: number) {
+    this.pateint.patientCaseModels.splice(index, 1);
+  }
 }
