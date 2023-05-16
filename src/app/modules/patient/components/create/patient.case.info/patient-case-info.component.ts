@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
-import { debounceTime, filter, finalize, switchMap, tap } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject, debounceTime, filter, finalize, switchMap, tap } from 'rxjs';
 import { AutoApplyModifier } from 'src/app/modules/common/models/enums/auto.apply.modifier';
 import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
 import { ReferringPartyType } from 'src/app/modules/common/models/enums/referring.party.type';
-import { ICD10Response } from '../../../models/case/icd10response';
 import { PatientCase } from '../../../models/case/patient.case';
 import { Patient } from '../../../models/patient';
 import { CaseDiagnosisService } from '../../../services/case-diagnosis.service';
@@ -54,10 +54,13 @@ export class PatientCaseInfoComponent implements OnInit {
   isLoading = false;
   options: any;
   diagnosisCtrl = new FormControl();
-  constructor(private caseDiagnosisService: CaseDiagnosisService) {
+  diagnosisCode: string[] = [];
+  constructor(private caseDiagnosisService: CaseDiagnosisService,
+    private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
+
     this.diagnosisCtrl.valueChanges
       .pipe(
         filter(text => {
@@ -76,6 +79,7 @@ export class PatientCaseInfoComponent implements OnInit {
           this.isLoading = true;
         }),
         switchMap((value) => {
+          this.spinner.show();
           return this.caseDiagnosisService.find(value)
             .pipe(
               finalize(() => {
@@ -86,18 +90,30 @@ export class PatientCaseInfoComponent implements OnInit {
         )
       )
       .subscribe(data => {
+        this.spinner.hide();
         if (data == undefined) {
           this.filteredDiagnosis = [];
         } else {
-          var dd: any = data;
-          this.filteredDiagnosis = dd.listOfCodeName;
+          var diagnosisResponse: any = data;
+          this.filteredDiagnosis = diagnosisResponse.listOfCodeName;
         }
       },
         error => {
           this.isLoading = false
         });
   }
-
+  addICD10diagnosis(diagnosis: any) {
+    diagnosis.forEach((element: string) => {
+      var code: string = element.split(',')[0]
+      var desrciption: string = element.split(',')[1]
+      const exists: boolean = this.case.caseDiagnosis?.findIndex(element => element.diagnosisCode === code) > -1;
+      if (!exists || this.case.caseDiagnosis.length === 0)
+        this.case.caseDiagnosis?.push({
+          diagnosisCode: code,
+          diagnosisDescription: desrciption
+        })
+    });
+  }
   add() {
     if (this.caseForm.valid) {
       let patientCase: PatientCase = Object.assign({}, this.case);

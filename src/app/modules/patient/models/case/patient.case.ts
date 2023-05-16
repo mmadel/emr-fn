@@ -13,7 +13,7 @@ export interface PatientCase {
     treatingDoctor: TreatingDoctor | null;
     injuryCase: InjuryCase | null;
     caseInsuranceInformation: CaseInsuranceInformation;
-    caseDiagnosis: CaseDiagnosis[] | null;
+    caseDiagnosis: CaseDiagnosis[] ;
     referralCase: ReferralCase ;
     caseOtherInformation: CaseOtherInformation;
 }

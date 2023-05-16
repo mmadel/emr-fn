@@ -10,7 +10,7 @@ export class CaseDiagnosisService {
   private baseUrl = environment.baseURL + 'case/diagnosis'
   constructor(private httpClient: HttpClient) { }
 
-  find(term:string){
+  find(term:any){
     var url:string = this.baseUrl + "/find/term/"+ term;
     return this.httpClient.get(url).pipe(tap(data => data))
   }

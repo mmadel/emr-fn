@@ -1,3 +1,4 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 <form cForm #caseForm="ngForm" (ngSubmit)="add()">
     <c-card cBorder="primary" class="mb-2">
         <c-card-body>
@@ -102,13 +103,14 @@
                 <span cInputGroupText id="basic-addon1">
                     <svg cIcon name="cilNotes"></svg>
                 </span>
-                <input  cFormControl  name="icd10diagnosis" [formControl]="diagnosisCtrl"/>
+                <input cFormControl name="icd10diagnosis" [formControl]="diagnosisCtrl" />
             </c-input-group>
-            <c-multi-select  multiple="true" visibleItems="20">
+            <c-multi-select class="mb-2" (valueChange)="addICD10diagnosis($event)" multiple="true" visibleItems="20">
                 <c-multi-select-option *ngFor="let option of filteredDiagnosis">
                     {{ option}}
                 </c-multi-select-option>
             </c-multi-select>
+
         </c-card-body>
     </c-card>
     <c-card cBorder="primary" class="mb-2">
