@@ -1,11 +1,14 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
+import { debounceTime, filter, finalize, switchMap, tap } from 'rxjs';
 import { AutoApplyModifier } from 'src/app/modules/common/models/enums/auto.apply.modifier';
 import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
 import { ReferringPartyType } from 'src/app/modules/common/models/enums/referring.party.type';
+import { ICD10Response } from '../../../models/case/icd10response';
 import { PatientCase } from '../../../models/case/patient.case';
 import { Patient } from '../../../models/patient';
+import { CaseDiagnosisService } from '../../../services/case-diagnosis.service';
 
 @Component({
   selector: 'app-patient-case-info',
@@ -47,10 +50,54 @@ export class PatientCaseInfoComponent implements OnInit {
   injuryCase = InjuryCase;
   referringParty = ReferringPartyType;
   autoApplyModifier = AutoApplyModifier;
-  constructor() { }
+  filteredDiagnosis: any;
+  isLoading = false;
+  options: any;
+  diagnosisCtrl = new FormControl();
+  constructor(private caseDiagnosisService: CaseDiagnosisService) {
+  }
 
   ngOnInit(): void {
+    this.diagnosisCtrl.valueChanges
+      .pipe(
+        filter(text => {
+          if (text === undefined)
+            return false;
+          if (text.length > 1) {
+            return true
+          } else {
+            this.filteredDiagnosis = [];
+            return false;
+          }
+        }),
+        debounceTime(500),
+        tap((value) => {
+          this.filteredDiagnosis = [];
+          this.isLoading = true;
+        }),
+        switchMap((value) => {
+          return this.caseDiagnosisService.find(value)
+            .pipe(
+              finalize(() => {
+                this.isLoading = false
+              }),
+            )
+        }
+        )
+      )
+      .subscribe(data => {
+        if (data == undefined) {
+          this.filteredDiagnosis = [];
+        } else {
+          var dd: any = data;
+          this.filteredDiagnosis = dd.listOfCodeName;
+        }
+      },
+        error => {
+          this.isLoading = false
+        });
   }
+
   add() {
     if (this.caseForm.valid) {
       let patientCase: PatientCase = Object.assign({}, this.case);
@@ -61,4 +108,5 @@ export class PatientCaseInfoComponent implements OnInit {
   remove(index: number) {
     this.pateint.patientCaseModels.splice(index, 1);
   }
+
 }

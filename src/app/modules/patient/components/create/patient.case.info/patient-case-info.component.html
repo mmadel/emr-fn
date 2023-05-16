@@ -51,7 +51,8 @@
                 <strong>Case Insurance Information</strong>
             </h6>
             <c-form-check [switch]="true" class="mb-2">
-                <input cFormCheckInput type="checkbox" [(ngModel)]="case.caseInsuranceInformation.isSelfPay" #isSelfPay="ngModel" id="selfPayAmount" name="selfPayAmount"/>
+                <input cFormCheckInput type="checkbox" [(ngModel)]="case.caseInsuranceInformation.isSelfPay"
+                    #isSelfPay="ngModel" id="selfPayAmount" name="selfPayAmount" />
                 <label cFormCheckLabel>SefPayed</label>
             </c-form-check>
             <span *ngIf="case.caseInsuranceInformation.isSelfPay">
@@ -97,6 +98,17 @@
             <h6 cCardTitle>
                 <strong>Case Diagnosis Information</strong>
             </h6>
+            <c-input-group class="mb-3">
+                <span cInputGroupText id="basic-addon1">
+                    <svg cIcon name="cilNotes"></svg>
+                </span>
+                <input  cFormControl  name="icd10diagnosis" [formControl]="diagnosisCtrl"/>
+            </c-input-group>
+            <c-multi-select  multiple="true" visibleItems="20">
+                <c-multi-select-option *ngFor="let option of filteredDiagnosis">
+                    {{ option}}
+                </c-multi-select-option>
+            </c-multi-select>
         </c-card-body>
     </c-card>
     <c-card cBorder="primary" class="mb-2">
@@ -187,7 +199,8 @@
                 <strong>Other Information</strong>
             </h6>
             <c-form-check [switch]="true" class="mb-2">
-                <input cFormCheckInput type="checkbox" [(ngModel)]="case.caseOtherInformation.isAuthorized" #isAuthorized="ngModel" id="isAuthorized" name="isAuthorized"/>
+                <input cFormCheckInput type="checkbox" [(ngModel)]="case.caseOtherInformation.isAuthorized"
+                    #isAuthorized="ngModel" id="isAuthorized" name="isAuthorized" />
                 <label cFormCheckLabel>Authorization Required</label>
             </c-form-check>
 
