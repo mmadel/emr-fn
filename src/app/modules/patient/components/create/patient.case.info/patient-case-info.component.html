@@ -53,7 +53,7 @@
             </h6>
             <c-form-check [switch]="true" class="mb-2">
                 <input cFormCheckInput type="checkbox" [(ngModel)]="case.caseInsuranceInformation.isSelfPay"
-                    #isSelfPay="ngModel" id="selfPayAmount" name="selfPayAmount" />
+                    #isSelfPay="ngModel" id="isselfPayAmount" name="isselfPayAmount" />
                 <label cFormCheckLabel>SefPayed</label>
             </c-form-check>
             <span *ngIf="case.caseInsuranceInformation.isSelfPay">
