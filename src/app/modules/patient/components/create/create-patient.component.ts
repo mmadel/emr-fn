@@ -53,8 +53,7 @@ export class CreatePatientComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  getPatientAddresses(pushedAddress: any) {
-
+  create(){
+    console.log(JSON.stringify(this.patient))
   }
 }
