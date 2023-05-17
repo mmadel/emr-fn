@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import * as _ from "lodash";
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
 import { Patient } from '../../models/patient';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
 import { PatientIdInfoComponent } from './patient.id.info/patient-id-info.component';
@@ -13,8 +14,9 @@ import { PatientIdInfoComponent } from './patient.id.info/patient-id-info.compon
 export class CreatePatientComponent implements OnInit {
   @ViewChild('basicInfoComponent') basicInfoComponent: PatientBasicInfoComponent;
   @ViewChild('idInfoComponent') idInfoComponent: PatientIdInfoComponent;
+  @ViewChild('addressComp') addressComp: AddressComponent;
   valid: boolean = true;
-  invalidFields: string[];
+  invalidFields: string[] = [];
   patient: Patient = {
     id: null,
     firstName: '',
@@ -71,7 +73,7 @@ export class CreatePatientComponent implements OnInit {
       this.resetFormComponents();
       console.log(JSON.stringify(this.patient))
     } else {
-      this.invalidFields = this.getInvalidFields();
+      this.getInvalidFields();
       this.toastr.error('Missing Fields', 'Error In Creation');
       this.scrollUp();
     }
@@ -95,23 +97,33 @@ export class CreatePatientComponent implements OnInit {
   }
 
   checkValidation(): boolean {
-    var valid: boolean = this.basicInfoComponent.isValid() && this.idInfoComponent.isValid();
+    var valid: boolean = this.basicInfoComponent.isValid()
+      && this.idInfoComponent.isValid()
+      && (this.addressComp.isValid() && this.addressComp.addresses.length > 0);
+
+
     return valid;
   }
 
   getInvalidFields() {
-    var invalidControls: string[] = [];
-
+    this.invalidFields = [];
     if (!this.basicInfoComponent.isValid())
       this.basicInfoComponent.getInvalidControls().forEach(invalidControl => {
-        invalidControls.push(invalidControl);
+        this.invalidFields.push(invalidControl);
       });
-    if (!this.idInfoComponent.isValid())
+    if (!this.idInfoComponent.isValid()) {
       this.idInfoComponent.getInvalidControls().forEach(invalidControl => {
-        invalidControls.push(invalidControl);
+        this.invalidFields.push(invalidControl);
       });
+    }
 
-    return invalidControls;
+    if (!this.addressComp.isValid()) {
+      this.addressComp.getInvalidControls().forEach(invalidControl => {
+        this.invalidFields.push(invalidControl);
+      });
+    } else if (this.addressComp.addresses.length === 0) {
+      this.invalidFields.push("Push Address(s) inputs")
+    }
   }
   resetFormComponents() {
     this.basicInfoComponent.resetForm();

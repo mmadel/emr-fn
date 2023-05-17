@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { BasicComponent } from 'src/app/util/basic.component';
 import { Address, AddressType, Countries, Country, States } from '../../models';
 
 @Component({
@@ -7,7 +8,7 @@ import { Address, AddressType, Countries, Country, States } from '../../models';
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.css']
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent extends BasicComponent implements OnInit, AfterViewInit {
   countries: Country[] = Countries;
   states: string[] = States;
   addressKeys = Object.values;
@@ -27,7 +28,10 @@ export class AddressComponent implements OnInit {
   @ViewChild('addressForm') addressForm: NgForm;
   @Output() pushedAddresses = new EventEmitter<Address[]>();
 
-  constructor() { }
+  constructor() { super() }
+  ngAfterViewInit(): void {
+    this.setForm(this.addressForm);
+  }
   add() {
     if (this.addressForm.valid) {
       let pushedAddress: Address = Object.assign({}, this.address);
