@@ -65,7 +65,7 @@
     [ngClass]="{'is-invalid': suffix.invalid && (suffix.dirty || suffix.touched)}" [(ngModel)]="patient.suffix"
     #suffix="ngModel">
     <option [ngValue]="null" disabled selected>Select Suffix</option>
-    <option *ngFor="let suffixValue of suffixes | keyvalue" [value]="suffixValue">
+    <option *ngFor="let suffixValue of suffixes | keyvalue" [value]="suffixValue.key">
         {{suffixValue.value}}
     </option>
 </select>

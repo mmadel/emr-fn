@@ -7,6 +7,9 @@ import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
 import { ReferringPartyType } from 'src/app/modules/common/models/enums/referring.party.type';
 import { BasicComponent } from 'src/app/util/basic.component';
+import { CaseInsuranceInformation } from '../../../models/case/case.insurance.info';
+import { CaseOtherInformation } from '../../../models/case/case.other.information';
+import { ReferralCase } from '../../../models/case/case.referral';
 import { PatientCase } from '../../../models/case/patient.case';
 import { Patient } from '../../../models/patient';
 import { CaseDiagnosisService } from '../../../services/case-diagnosis.service';
@@ -122,6 +125,9 @@ export class PatientCaseInfoComponent extends BasicComponent implements OnInit, 
   add() {
     if (this.caseForm.valid) {
       let patientCase: PatientCase = Object.assign({}, this.case);
+      patientCase.caseInsuranceInformation = Object.assign({}, this.case.caseInsuranceInformation);
+      patientCase.referralCase = Object.assign({}, this.case.referralCase);
+      patientCase.caseOtherInformation = Object.assign({}, this.case.caseOtherInformation);
       this.pateint.patientCaseModels.push(patientCase);
       this.caseForm.reset();
     }

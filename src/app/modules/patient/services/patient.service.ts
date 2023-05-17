@@ -39,7 +39,9 @@ export class PatientService {
 
 
   create(patient: Patient) {
-
+    const headers = { 'content-type': 'application/json' }
+    var createURL = this.baseUrl + '/create'
+    return this.httpClient.post(`${createURL}`, JSON.stringify(patient), { 'headers': headers})
   }
 
   delete(patientId: number) {
