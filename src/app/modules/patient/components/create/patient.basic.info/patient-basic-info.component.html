@@ -28,7 +28,7 @@
     <c-date-picker cFormControl closeOnSelect size="sm" placeholder="Date Of Birth" FormControl id="birthDate"
         name="birthDate" required
         [ngClass]="{'is-invalid': birthDate.invalid && (birthDate.dirty || birthDate.touched)}"
-        [(ngModel)]="patient.birthDate" #birthDate="ngModel"></c-date-picker>
+        [(ngModel)]="patient.birthDate_date" #birthDate="ngModel"></c-date-picker>
 </c-col>
 <small *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="form-text text-danger">
     Gender is required
@@ -64,7 +64,7 @@
     [ngClass]="{'is-invalid': suffix.invalid && (suffix.dirty || suffix.touched)}" [(ngModel)]="patient.suffix"
     #suffix="ngModel">
     <option [ngValue]="null" disabled selected>Select Suffix</option>
-    <option *ngFor="let suffixValue of suffix | keyvalue" [value]="suffixValue.key">
+    <option *ngFor="let suffixValue of suffixes | keyvalue" [value]="suffixValue">
         {{suffixValue.value}}
     </option>
 </select>

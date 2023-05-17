@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { Patient } from '../../models/patient';
-
+import * as _ from "lodash";
 @Component({
   selector: 'app-create-patient',
   templateUrl: './create-patient.component.html',
@@ -9,11 +10,12 @@ import { Patient } from '../../models/patient';
 export class CreatePatientComponent implements OnInit {
 
   patient: Patient = {
-    id: 0,
+    id: null,
     firstName: '',
     middleName: '',
     lastName: '',
     birthDate: 0,
+    birthDate_date: null,
     gender: null,
     maritalStatus: null,
     suffix: null,
@@ -53,7 +55,21 @@ export class CreatePatientComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  create(){
+  convertDateToLong() {
+    this.patient.birthDate = Number(moment(this.patient?.birthDate_date).format("x"))
+    this.patient.effectiveFromDate = Number(moment(this.patient?.effectiveFromDate_Date).format("x"))
+    this.patient.effectiveToDate = Number(moment(this.patient?.effectiveToDate_Date).format("x"))
+
+    _.map(this.patient.patientInsuranceModels, patientInsuranceModel => {
+      return patientInsuranceModel.expirationDate = Number(moment(patientInsuranceModel.expirationDate_Date).format("x"))
+    });
+  }
+  convertClinicIdsToNumbers() {
+    this.patient.clinicsId = this.patient.clinicsId.map(i => Number(i))
+  }
+  create() {
+    this.convertDateToLong();
+    this.convertClinicIdsToNumbers()
     console.log(JSON.stringify(this.patient))
   }
 }

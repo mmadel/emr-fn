@@ -7,7 +7,7 @@ import { PlaceOfService } from "src/app/modules/common/models/enums/place.servic
 import { InjuryCase } from "src/app/modules/common/models/enums/injury.case";
 
 export interface PatientCase {
-    id: number;
+    id: number| null;
     title: string;
     placeOfService: PlaceOfService | null;
     treatingDoctor: TreatingDoctor | null;

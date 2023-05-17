@@ -19,7 +19,7 @@ export class PatientCaseInfoComponent implements OnInit {
   @Input() pateint: Patient;
   @ViewChild('caseForm') caseForm: NgForm;
   case: PatientCase = {
-    id: 0,
+    id: null,
     title: '',
     placeOfService: null,
     treatingDoctor: null,

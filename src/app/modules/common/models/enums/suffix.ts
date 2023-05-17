@@ -1,7 +1,7 @@
 export enum Suffix{
-    Jr="jr",
-    Sr="sr",
-    II="ii",
-    III="iii",
-    IV="iv",
+    Jr="Jr",
+    Sr="Sr",
+    II="II",
+    III="III",
+    IV="IV",
 }

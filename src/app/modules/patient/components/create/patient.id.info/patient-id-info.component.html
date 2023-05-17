@@ -7,7 +7,7 @@
     #idType="ngModel">
     <option [ngValue]="null" disabled selected>Select Id Type</option>
     <option *ngFor="let idtype of idTypes | keyvalue" [value]="idtype.key">
-        idtype.value
+        {{idtype.value}}
     </option>
 </select>
 

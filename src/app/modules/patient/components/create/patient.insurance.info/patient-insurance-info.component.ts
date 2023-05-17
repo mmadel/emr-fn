@@ -13,14 +13,14 @@ export class PatientInsuranceInfoComponent implements OnInit {
   PaymentTypes = PaymentType;
   @Input() patient: Patient;
   patientInsurance:PatientInsurance={
-    id: 0,
+    id: null,
     insuranceNumber: '',
     groupNumber: '',
     paymentType: null,
     paymentValue: '',
     totalDeductible: '',
-    visitAllowed: 0,
-    expirationDate: 0,
+    visitAllowed: null,
+    expirationDate: null,
     expirationDate_Date: null,
     insuranceCompany: null
   }

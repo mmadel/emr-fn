@@ -17,7 +17,7 @@ export class PatientBasicInfoComponent implements OnInit {
   genders = Gender;
   maritalStatusKeys = Object.values;
   maritalStatuses= MaritalStatus;
-  suffix= Suffix;
+  suffixes= Suffix;
   titles= Title;
   
   constructor() { }
@@ -25,4 +25,7 @@ export class PatientBasicInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  clearFilter(event:any){
+    console.log(event);
+  }
 }

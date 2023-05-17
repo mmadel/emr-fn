@@ -67,7 +67,7 @@
         Visit Allowed is required
     </small>
     <c-input-group class="mb-3" sizing="sm">
-        <input placeholder="Enter Total Deductible" cFormControl id="visitAllowed" name="visitAllowed" sizing="sm"
+        <input type="number" placeholder="Enter Visit Allowed" cFormControl id="visitAllowed" name="visitAllowed" sizing="sm"
             required [ngClass]="{'is-invalid': visitAllowed.invalid && (visitAllowed.dirty || visitAllowed.touched)}"
             #visitAllowed="ngModel" [(ngModel)]="patientInsurance.visitAllowed" />
     </c-input-group>
