@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
+import { ContactComponent } from 'src/app/modules/common/components/contact/contact.component';
 import { Patient } from '../../models/patient';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
 import { PatientIdInfoComponent } from './patient.id.info/patient-id-info.component';
@@ -15,6 +16,7 @@ export class CreatePatientComponent implements OnInit {
   @ViewChild('basicInfoComponent') basicInfoComponent: PatientBasicInfoComponent;
   @ViewChild('idInfoComponent') idInfoComponent: PatientIdInfoComponent;
   @ViewChild('addressComp') addressComp: AddressComponent;
+  @ViewChild('contactComponent') contactComponent: ContactComponent;
   valid: boolean = true;
   invalidFields: string[] = [];
   patient: Patient = {
@@ -99,9 +101,8 @@ export class CreatePatientComponent implements OnInit {
   checkValidation(): boolean {
     var valid: boolean = this.basicInfoComponent.isValid()
       && this.idInfoComponent.isValid()
-      && (this.addressComp.isValid() && this.addressComp.addresses.length > 0);
-
-
+      && (this.addressComp.isValid() && this.addressComp.addresses.length > 0)
+      && (this.contactComponent.isValid() && this.contactComponent.contacts.length > 0);
     return valid;
   }
 
@@ -123,6 +124,14 @@ export class CreatePatientComponent implements OnInit {
       });
     } else if (this.addressComp.addresses.length === 0) {
       this.invalidFields.push("Push Address(s) inputs")
+    }
+
+    if (!this.contactComponent.isValid()) {
+      this.contactComponent.getInvalidControls().forEach(invalidControl => {
+        this.invalidFields.push(invalidControl);
+      });
+    } else if (this.contactComponent.contacts.length === 0) {
+      this.invalidFields.push("Push Contacts(s) inputs")
     }
   }
   resetFormComponents() {
