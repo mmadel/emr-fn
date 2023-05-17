@@ -20,9 +20,9 @@
         [(ngModel)]="patient.patientId" />
 
     <c-col class="mb-2" xs="12">
-        <c-date-range-picker cFormControl [(startDate)]="patient.effectiveFromDate_Date" size="sm" required
+        <c-date-range-picker cFormControl [(startDate)]="patient.effectiveFromDate_Date" size="sm"
             name="Effective From-Effective To"
-            [(endDate)]="patient.effectiveFromDate_Date" 
+            [(endDate)]="patient.effectiveToDate_Date" 
             [placeholder]="['Effective From', 'Effective To']"></c-date-range-picker>
     </c-col>
 </form>
