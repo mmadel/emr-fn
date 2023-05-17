@@ -7,6 +7,7 @@ import { ContactComponent } from 'src/app/modules/common/components/contact/cont
 import { Patient } from '../../models/patient';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
 import { PatientIdInfoComponent } from './patient.id.info/patient-id-info.component';
+import { PatientInsuranceInfoComponent } from './patient.insurance.info/patient-insurance-info.component';
 @Component({
   selector: 'app-create-patient',
   templateUrl: './create-patient.component.html',
@@ -17,6 +18,7 @@ export class CreatePatientComponent implements OnInit {
   @ViewChild('idInfoComponent') idInfoComponent: PatientIdInfoComponent;
   @ViewChild('addressComp') addressComp: AddressComponent;
   @ViewChild('contactComponent') contactComponent: ContactComponent;
+  @ViewChild('insuranceComponent') insuranceComponent: PatientInsuranceInfoComponent;
   valid: boolean = true;
   invalidFields: string[] = [];
   patient: Patient = {
@@ -102,7 +104,8 @@ export class CreatePatientComponent implements OnInit {
     var valid: boolean = this.basicInfoComponent.isValid()
       && this.idInfoComponent.isValid()
       && (this.addressComp.isValid() && this.addressComp.addresses.length > 0)
-      && (this.contactComponent.isValid() && this.contactComponent.contacts.length > 0);
+      && (this.contactComponent.isValid() && this.contactComponent.contacts.length > 0)
+      && (this.insuranceComponent.isValid() && this.patient.patientInsuranceModels.length > 0);
     return valid;
   }
 
@@ -132,6 +135,14 @@ export class CreatePatientComponent implements OnInit {
       });
     } else if (this.contactComponent.contacts.length === 0) {
       this.invalidFields.push("Push Contacts(s) inputs")
+    }
+
+    if (!this.insuranceComponent.isValid()) {
+      this.insuranceComponent.getInvalidControls().forEach(invalidControl => {
+        this.invalidFields.push(invalidControl);
+      });
+    } else if (this.patient.patientInsuranceModels.length === 0) {
+      this.invalidFields.push("Push Insurance(s) inputs")
     }
   }
   resetFormComponents() {

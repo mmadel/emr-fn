@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PaymentType } from 'src/app/modules/common/models/enums/payment.type';
+import { BasicComponent } from 'src/app/util/basic.component';
 import { PatientInsurance } from '../../../models/insurance/patient.insurance';
 import { Patient } from '../../../models/patient';
 
@@ -9,10 +10,10 @@ import { Patient } from '../../../models/patient';
   templateUrl: './patient-insurance-info.component.html',
   styleUrls: ['./patient-insurance-info.component.css']
 })
-export class PatientInsuranceInfoComponent implements OnInit {
+export class PatientInsuranceInfoComponent extends BasicComponent implements OnInit, AfterViewInit {
   PaymentTypes = PaymentType;
   @Input() patient: Patient;
-  patientInsurance:PatientInsurance={
+  patientInsurance: PatientInsurance = {
     id: null,
     insuranceNumber: '',
     groupNumber: '',
@@ -25,7 +26,10 @@ export class PatientInsuranceInfoComponent implements OnInit {
     insuranceCompany: null
   }
   @ViewChild('insuranceForm') insuranceForm: NgForm;
-  constructor() { }
+  constructor() { super() }
+  ngAfterViewInit(): void {
+    this.setForm(this.insuranceForm)
+  }
 
   ngOnInit(): void {
   }
