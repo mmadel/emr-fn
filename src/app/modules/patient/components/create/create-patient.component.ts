@@ -23,6 +23,14 @@ export class CreatePatientComponent implements OnInit {
   @ViewChild('caseComponent') caseComponent: PatientCaseInfoComponent;
   valid: boolean = true;
   invalidFields: string[] = [];
+
+  basicInvalidFields: string[] = [];
+  idInvalidFields: string[] = [];
+  addressInvalidFields: string[] = [];
+  contactInvalidFields: string[] = [];
+  clinicInvalidFields: string[] = [];
+  insuranceInvalidFields: string[] = [];
+  caseInvalidFields: string[] = [];
   patient: Patient = {
     id: null,
     firstName: '',
@@ -114,39 +122,45 @@ export class CreatePatientComponent implements OnInit {
   }
 
   getInvalidFields() {
-    this.invalidFields = [];
+    this.basicInvalidFields = [];
+    this.idInvalidFields = [];
+    this.addressInvalidFields = [];
+    this.contactInvalidFields = [];
+    this.insuranceInvalidFields = [];
+    this.caseInvalidFields = [];
+
     if (!this.basicInfoComponent.isValid())
       this.basicInfoComponent.getInvalidControls().forEach(invalidControl => {
-        this.invalidFields.push(invalidControl);
+        this.basicInvalidFields.push(invalidControl);
       });
     if (!this.idInfoComponent.isValid()) {
       this.idInfoComponent.getInvalidControls().forEach(invalidControl => {
-        this.invalidFields.push(invalidControl);
+        this.idInvalidFields.push(invalidControl);
       });
     }
 
     if (!this.addressComp.isValid()) {
       this.addressComp.getInvalidControls().forEach(invalidControl => {
-        this.invalidFields.push(invalidControl);
+        this.addressInvalidFields.push(invalidControl);
       });
     } else if (this.addressComp.addresses.length === 0) {
-      this.invalidFields.push("Push Address(s) inputs")
+      this.addressInvalidFields.push("Push Address(s) inputs")
     }
 
     if (!this.contactComponent.isValid()) {
       this.contactComponent.getInvalidControls().forEach(invalidControl => {
-        this.invalidFields.push(invalidControl);
+        this.contactInvalidFields.push(invalidControl);
       });
     } else if (this.contactComponent.contacts.length === 0) {
-      this.invalidFields.push("Push Contacts(s) inputs")
+      this.contactInvalidFields.push("Push Contacts(s) inputs")
     }
 
     if (!this.insuranceComponent.isValid()) {
       this.insuranceComponent.getInvalidControls().forEach(invalidControl => {
-        this.invalidFields.push(invalidControl);
+        this.insuranceInvalidFields.push(invalidControl);
       });
     } else if (this.patient.patientInsuranceModels.length === 0) {
-      this.invalidFields.push("Push Insurance(s) inputs")
+      this.insuranceInvalidFields.push("Push Insurance(s) inputs")
     }
 
     if (this.patient.clinicsId.length === 0)
@@ -154,14 +168,19 @@ export class CreatePatientComponent implements OnInit {
 
     if (!this.caseComponent.isValid()) {
       this.caseComponent.getInvalidControls().forEach(invalidControl => {
-        this.invalidFields.push(invalidControl);
+        this.caseInvalidFields.push(invalidControl);
       });
     } else if (this.patient.patientCaseModels.length === 0) {
-      this.invalidFields.push("Push Case(s) inputs")
+      this.clinicInvalidFields.push("Push Case(s) inputs")
     }
   }
   resetFormComponents() {
     this.basicInfoComponent.resetForm();
+    this.idInfoComponent.resetForm();
+    this.addressComp.resetForm();
+    this.contactComponent.resetForm();
+    this.insuranceComponent.resetForm();
+    this.caseComponent.resetForm();
   }
   scrollUp() {
     (function smoothscroll() {
