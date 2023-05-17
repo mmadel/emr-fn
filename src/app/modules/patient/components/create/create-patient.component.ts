@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import * as _ from "lodash";
 import * as moment from 'moment';
 import { Patient } from '../../models/patient';
-import * as _ from "lodash";
+import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
 @Component({
   selector: 'app-create-patient',
   templateUrl: './create-patient.component.html',
   styleUrls: ['./create-patient.component.css']
 })
 export class CreatePatientComponent implements OnInit {
-
+  @ViewChild('basicInfoComponent') basicInfoComponent: PatientBasicInfoComponent;
   patient: Patient = {
     id: null,
     firstName: '',
@@ -68,8 +69,11 @@ export class CreatePatientComponent implements OnInit {
     this.patient.clinicsId = this.patient.clinicsId.map(i => Number(i))
   }
   create() {
-    this.convertDateToLong();
-    this.convertClinicIdsToNumbers()
-    console.log(JSON.stringify(this.patient))
+      console.log(this.basicInfoComponent.patientBasicInfoForm.controls)
+      
+      this.convertDateToLong()
+      this.convertClinicIdsToNumbers()
+      console.log(JSON.stringify(this.patient))
+    
   }
 }

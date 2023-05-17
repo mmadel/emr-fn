@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Gender } from 'src/app/modules/common/models/enums/geneder';
-import { IdType } from 'src/app/modules/common/models/enums/id.type';
 import { MaritalStatus } from 'src/app/modules/common/models/enums/marital.status';
 import { Suffix } from 'src/app/modules/common/models/enums/suffix';
 import { Title } from 'src/app/modules/common/models/enums/title';
@@ -12,6 +12,7 @@ import { Patient } from '../../../models/patient';
   styleUrls: ['./patient-basic-info.component.css']
 })
 export class PatientBasicInfoComponent implements OnInit {
+  @ViewChild('patientBasicInfoForm') patientBasicInfoForm:NgForm;
   @Input() patient: Patient;
   genderKeys = Object.values;
   genders = Gender;

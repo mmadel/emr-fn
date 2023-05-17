@@ -1,3 +1,4 @@
+<form cForm #patientBasicInfoForm="ngForm">
 <small *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="form-text text-danger">
     First Name is required
 </small>
@@ -90,7 +91,7 @@
     </option>
 </select>
 <c-form-check [switch]="true">
-    <input cFormCheckInput type="checkbox" [(ngModel)]="patient.isDependent" />
+    <input cFormCheckInput type="checkbox" [(ngModel)]="patient.isDependent" name="isDependent"/>
     <label cFormCheckLabel>Dependent</label>
 </c-form-check>
 
@@ -123,3 +124,4 @@
 <textarea class="mb-2" placeholder="Enter Additional Information" cFormControl id="addtionalInfo" name="addtionalInfo"
     sizing="sm" [ngClass]="{'is-invalid': addtionalInfo.invalid && (addtionalInfo.dirty || addtionalInfo.touched)}"
     #addtionalInfo="ngModel" [(ngModel)]="patient.addtionalInfo"></textarea>
+</form>

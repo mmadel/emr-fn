@@ -6,106 +6,21 @@
 </c-row>
 <hr />
 <c-container fluid>
-    <form cForm #insuranceCompanyCreateForm="ngForm" (ngSubmit)="create()">
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Essential information</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-patient-basic-info [patient]="patient"></app-patient-basic-info>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Identification Information</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-patient-id-info [patient]="patient"></app-patient-id-info>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Address Information</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-address #addressComp [addresses]="patient.addresses"></app-address>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Contact Information</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-contact [contacts]="patient.contacts"></app-contact>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Emergency Information</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-patient-emergency-info [patient]="patient"></app-patient-emergency-info>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Insurance Information</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-patient-insurance-info [patient]="patient"></app-patient-insurance-info>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Clinics</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-patient-clinic-info [patient]="patient"></app-patient-clinic-info>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center">
-            <c-col class="col">
-                <c-card class="mb-3 ustify-content-center">
-                    <c-card-header>
-                        <h3>Case Information</h3>
-                    </c-card-header>
-                    <c-card-body>
-                        <app-patient-case-info [pateint]="patient"></app-patient-case-info>
-                    </c-card-body>
-                </c-card>
-            </c-col>
-        </c-row>
-        <div class="d-grid gap-2 col-2 mx-auto mb-5">
-            <button cButton color="primary" variant="outline" type="submit">Create</button>
-        </div>
-    </form>
+
+    <c-row class="justify-content-center">
+        <c-col class="col">
+            <c-card class="mb-3 ustify-content-center">
+                <c-card-header>
+                    <h3>Essential information</h3>
+                </c-card-header>
+                <c-card-body>
+                    <app-patient-basic-info  #basicInfoComponent [patient]="patient"></app-patient-basic-info>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+
+    <div class="d-grid gap-2 col-2 mx-auto mb-5">
+        <button cButton color="primary" variant="outline" type="button" (click)="create()">Create</button>
+    </div>
 </c-container>
-{{patient | json}}

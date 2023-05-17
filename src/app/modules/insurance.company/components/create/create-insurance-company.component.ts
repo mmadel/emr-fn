@@ -38,7 +38,6 @@ export class CreateInsuranceCompanyComponent implements OnInit {
   ngOnInit(): void {
   }
   create() {
-   
     if (this.insuranceCompanyCreateForm.valid && this.addresses !== undefined) {
       this.insuranceCompany.addresses = this.addresses;
       this.insuranceCompany.clinicId = 1;
