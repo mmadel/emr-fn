@@ -3,7 +3,7 @@
         Id Type is required
     </small>
 
-    <select cFormControl cSelect class="mb-2" sizing="sm" id="title" name="title" required
+    <select cFormControl cSelect class="mb-2" sizing="sm" id="IdType" name="IdType" required
         [ngClass]="{'is-invalid': idType.invalid && (idType.dirty || idType.touched)}" [(ngModel)]="patient.idType"
         #idType="ngModel">
         <option [ngValue]="null" disabled selected>Select Id Type</option>
@@ -20,8 +20,9 @@
         [(ngModel)]="patient.patientId" />
 
     <c-col class="mb-2" xs="12">
-        <c-date-range-picker [(startDate)]="patient.effectiveFromDate_Date" size="sm"
-            [(endDate)]="patient.effectiveFromDate_Date"
+        <c-date-range-picker cFormControl [(startDate)]="patient.effectiveFromDate_Date" size="sm" required
+            name="Effective From-Effective To"
+            [(endDate)]="patient.effectiveFromDate_Date" 
             [placeholder]="['Effective From', 'Effective To']"></c-date-range-picker>
     </c-col>
 </form>

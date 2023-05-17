@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Patient } from '../../models/patient';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
+import { PatientIdInfoComponent } from './patient.id.info/patient-id-info.component';
 @Component({
   selector: 'app-create-patient',
   templateUrl: './create-patient.component.html',
@@ -11,6 +12,7 @@ import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-in
 })
 export class CreatePatientComponent implements OnInit {
   @ViewChild('basicInfoComponent') basicInfoComponent: PatientBasicInfoComponent;
+  @ViewChild('idInfoComponent') idInfoComponent: PatientIdInfoComponent;
   valid: boolean = true;
   invalidFields: string[];
   patient: Patient = {
@@ -66,7 +68,7 @@ export class CreatePatientComponent implements OnInit {
     if (this.valid) {
       this.converPatientFields();
       this.toastr.success('Pateint Created.!!');
-      this.resetFormComponents(); 
+      this.resetFormComponents();
       console.log(JSON.stringify(this.patient))
     } else {
       this.invalidFields = this.getInvalidFields();
@@ -93,7 +95,7 @@ export class CreatePatientComponent implements OnInit {
   }
 
   checkValidation(): boolean {
-    var valid: boolean = this.basicInfoComponent.isValid();
+    var valid: boolean = this.basicInfoComponent.isValid() && this.idInfoComponent.isValid();
     return valid;
   }
 
@@ -102,6 +104,10 @@ export class CreatePatientComponent implements OnInit {
 
     if (!this.basicInfoComponent.isValid())
       this.basicInfoComponent.getInvalidControls().forEach(invalidControl => {
+        invalidControls.push(invalidControl);
+      });
+    if (!this.idInfoComponent.isValid())
+      this.idInfoComponent.getInvalidControls().forEach(invalidControl => {
         invalidControls.push(invalidControl);
       });
 
