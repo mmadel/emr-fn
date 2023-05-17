@@ -105,7 +105,8 @@ export class CreatePatientComponent implements OnInit {
       && this.idInfoComponent.isValid()
       && (this.addressComp.isValid() && this.addressComp.addresses.length > 0)
       && (this.contactComponent.isValid() && this.contactComponent.contacts.length > 0)
-      && (this.insuranceComponent.isValid() && this.patient.patientInsuranceModels.length > 0);
+      && (this.insuranceComponent.isValid() && this.patient.patientInsuranceModels.length > 0)
+      && (this.patient.clinicsId.length === 0)
     return valid;
   }
 
@@ -144,6 +145,9 @@ export class CreatePatientComponent implements OnInit {
     } else if (this.patient.patientInsuranceModels.length === 0) {
       this.invalidFields.push("Push Insurance(s) inputs")
     }
+
+    if (this.patient.clinicsId.length === 0)
+      this.invalidFields.push("Assign Created Patient to at least one clinic")
   }
   resetFormComponents() {
     this.basicInfoComponent.resetForm();
