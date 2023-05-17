@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import * as _ from "lodash";
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, EMPTY, of } from 'rxjs';
+import { catchError, EMPTY } from 'rxjs';
 import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
 import { ContactComponent } from 'src/app/modules/common/components/contact/contact.component';
 import { BasicComponent } from 'src/app/util/basic.component';
@@ -77,7 +78,9 @@ export class CreatePatientComponent implements OnInit, AfterViewInit {
     patientCaseModels: [],
     patientInsuranceModels: []
   };
-  constructor(private toastr: ToastrService, private patientService: PatientService) { }
+  constructor(private toastr: ToastrService,
+    private patientService: PatientService,
+    private router: Router) { }
   ngAfterViewInit(): void {
 
   }
@@ -102,8 +105,9 @@ export class CreatePatientComponent implements OnInit, AfterViewInit {
           })
         )
         .subscribe(() => {
-          this.toastr.success('Pateint Created.!!');
           this.resetFormComponents();
+          this.toastr.success('Pateint Created.!!');
+          this.router.navigateByUrl('patient/list')
         })
     } else {
       this.toastr.error('Missing Fields', 'Error In Creation');
