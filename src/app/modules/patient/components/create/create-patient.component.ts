@@ -66,6 +66,7 @@ export class CreatePatientComponent implements OnInit {
     if (this.valid) {
       this.converPatientFields();
       this.toastr.success('Pateint Created.!!');
+      this.resetFormComponents(); 
       console.log(JSON.stringify(this.patient))
     } else {
       this.invalidFields = this.getInvalidFields();
@@ -105,6 +106,9 @@ export class CreatePatientComponent implements OnInit {
       });
 
     return invalidControls;
+  }
+  resetFormComponents() {
+    this.basicInfoComponent.resetForm();
   }
   scrollUp() {
     (function smoothscroll() {

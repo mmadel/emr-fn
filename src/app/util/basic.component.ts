@@ -19,4 +19,8 @@ export class BasicComponent {
         }
         return invalid;
     }
+
+    public resetForm() {
+        this.form.reset();
+    }
 }
