@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, debounceTime, filter, finalize, switchMap, tap } from 'rxjs';
@@ -6,6 +6,7 @@ import { AutoApplyModifier } from 'src/app/modules/common/models/enums/auto.appl
 import { InjuryCase } from 'src/app/modules/common/models/enums/injury.case';
 import { PlaceOfService } from 'src/app/modules/common/models/enums/place.service';
 import { ReferringPartyType } from 'src/app/modules/common/models/enums/referring.party.type';
+import { BasicComponent } from 'src/app/util/basic.component';
 import { PatientCase } from '../../../models/case/patient.case';
 import { Patient } from '../../../models/patient';
 import { CaseDiagnosisService } from '../../../services/case-diagnosis.service';
@@ -15,7 +16,7 @@ import { CaseDiagnosisService } from '../../../services/case-diagnosis.service';
   templateUrl: './patient-case-info.component.html',
   styleUrls: ['./patient-case-info.component.css']
 })
-export class PatientCaseInfoComponent implements OnInit {
+export class PatientCaseInfoComponent extends BasicComponent implements OnInit, AfterViewInit {
   @Input() pateint: Patient;
   @ViewChild('caseForm') caseForm: NgForm;
   case: PatientCase = {
@@ -57,6 +58,10 @@ export class PatientCaseInfoComponent implements OnInit {
   diagnosisCode: string[] = [];
   constructor(private caseDiagnosisService: CaseDiagnosisService,
     private spinner: NgxSpinnerService) {
+    super();
+  }
+  ngAfterViewInit(): void {
+    this.setForm(this.caseForm);
   }
 
   ngOnInit(): void {

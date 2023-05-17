@@ -6,6 +6,7 @@ import { AddressComponent } from 'src/app/modules/common/components/address/addr
 import { ContactComponent } from 'src/app/modules/common/components/contact/contact.component';
 import { Patient } from '../../models/patient';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
+import { PatientCaseInfoComponent } from './patient.case.info/patient-case-info.component';
 import { PatientIdInfoComponent } from './patient.id.info/patient-id-info.component';
 import { PatientInsuranceInfoComponent } from './patient.insurance.info/patient-insurance-info.component';
 @Component({
@@ -19,6 +20,7 @@ export class CreatePatientComponent implements OnInit {
   @ViewChild('addressComp') addressComp: AddressComponent;
   @ViewChild('contactComponent') contactComponent: ContactComponent;
   @ViewChild('insuranceComponent') insuranceComponent: PatientInsuranceInfoComponent;
+  @ViewChild('caseComponent') caseComponent: PatientCaseInfoComponent;
   valid: boolean = true;
   invalidFields: string[] = [];
   patient: Patient = {
@@ -107,6 +109,7 @@ export class CreatePatientComponent implements OnInit {
       && (this.contactComponent.isValid() && this.contactComponent.contacts.length > 0)
       && (this.insuranceComponent.isValid() && this.patient.patientInsuranceModels.length > 0)
       && (this.patient.clinicsId.length === 0)
+      && (this.caseComponent.isValid() && this.patient.patientCaseModels.length > 0)
     return valid;
   }
 
@@ -148,6 +151,14 @@ export class CreatePatientComponent implements OnInit {
 
     if (this.patient.clinicsId.length === 0)
       this.invalidFields.push("Assign Created Patient to at least one clinic")
+
+    if (!this.caseComponent.isValid()) {
+      this.caseComponent.getInvalidControls().forEach(invalidControl => {
+        this.invalidFields.push(invalidControl);
+      });
+    } else if (this.patient.patientCaseModels.length === 0) {
+      this.invalidFields.push("Push Case(s) inputs")
+    }
   }
   resetFormComponents() {
     this.basicInfoComponent.resetForm();
