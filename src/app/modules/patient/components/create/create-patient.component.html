@@ -5,6 +5,13 @@
     </c-col>
 </c-row>
 <hr />
+<div class="row alert alert-danger" *ngIf="!valid" role="alert">
+    <ul>
+        <li *ngFor="let invalidField of invalidFields; let i = index">
+            {{invalidField }}
+        </li>
+    </ul>
+</div>
 <c-container fluid>
     <!--Pateint Basic Component-->
     <c-row class="justify-content-center">

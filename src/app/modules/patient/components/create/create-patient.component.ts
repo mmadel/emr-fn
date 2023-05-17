@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as _ from "lodash";
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 import { Patient } from '../../models/patient';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
 @Component({
@@ -10,6 +11,8 @@ import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-in
 })
 export class CreatePatientComponent implements OnInit {
   @ViewChild('basicInfoComponent') basicInfoComponent: PatientBasicInfoComponent;
+  valid: boolean = true;
+  invalidFields: string[];
   patient: Patient = {
     id: null,
     firstName: '',
@@ -52,9 +55,28 @@ export class CreatePatientComponent implements OnInit {
     patientCaseModels: [],
     patientInsuranceModels: []
   };
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
+  }
+
+
+  create() {
+    this.valid = this.checkValidation();
+    if (this.valid) {
+      this.converPatientFields();
+      this.toastr.success('Pateint Created.!!');
+      console.log(JSON.stringify(this.patient))
+    } else {
+      this.invalidFields = this.getInvalidFields();
+      this.toastr.error('Missing Fields', 'Error In Creation');
+      this.scrollUp();
+    }
+  }
+
+  converPatientFields() {
+    this.convertDateToLong()
+    this.convertClinicIdsToNumbers()
   }
   convertDateToLong() {
     this.patient.birthDate = Number(moment(this.patient?.birthDate_date).format("x"))
@@ -68,12 +90,28 @@ export class CreatePatientComponent implements OnInit {
   convertClinicIdsToNumbers() {
     this.patient.clinicsId = this.patient.clinicsId.map(i => Number(i))
   }
-  create() {
-      console.log(this.basicInfoComponent.patientBasicInfoForm.controls)
-      
-      this.convertDateToLong()
-      this.convertClinicIdsToNumbers()
-      console.log(JSON.stringify(this.patient))
-    
+
+  checkValidation(): boolean {
+    var valid: boolean = this.basicInfoComponent.isValid();
+    return valid;
+  }
+
+  getInvalidFields() {
+    var invalidControls: string[] = [];
+
+    if (!this.basicInfoComponent.isValid())
+      this.basicInfoComponent.getInvalidControls().forEach(invalidControl => {
+        invalidControls.push(invalidControl);
+      });
+
+    return invalidControls;
+  }
+  scrollUp() {
+    (function smoothscroll() {
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.scrollTo(0, 0);
+      }
+    })();
   }
 }
