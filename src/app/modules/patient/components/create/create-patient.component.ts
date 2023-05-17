@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import * as _ from "lodash";
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
 import { ContactComponent } from 'src/app/modules/common/components/contact/contact.component';
+import { BasicComponent } from 'src/app/util/basic.component';
 import { Patient } from '../../models/patient';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
 import { PatientCaseInfoComponent } from './patient.case.info/patient-case-info.component';
@@ -14,13 +15,15 @@ import { PatientInsuranceInfoComponent } from './patient.insurance.info/patient-
   templateUrl: './create-patient.component.html',
   styleUrls: ['./create-patient.component.css']
 })
-export class CreatePatientComponent implements OnInit {
+export class CreatePatientComponent implements OnInit, AfterViewInit {
   @ViewChild('basicInfoComponent') basicInfoComponent: PatientBasicInfoComponent;
   @ViewChild('idInfoComponent') idInfoComponent: PatientIdInfoComponent;
   @ViewChild('addressComp') addressComp: AddressComponent;
   @ViewChild('contactComponent') contactComponent: ContactComponent;
   @ViewChild('insuranceComponent') insuranceComponent: PatientInsuranceInfoComponent;
   @ViewChild('caseComponent') caseComponent: PatientCaseInfoComponent;
+
+  @ViewChildren('component') components: QueryList<BasicComponent>;
   valid: boolean = true;
   invalidFields: string[] = [];
 
@@ -74,8 +77,12 @@ export class CreatePatientComponent implements OnInit {
     patientInsuranceModels: []
   };
   constructor(private toastr: ToastrService) { }
+  ngAfterViewInit(): void {
+
+  }
 
   ngOnInit(): void {
+
   }
 
 
@@ -87,7 +94,9 @@ export class CreatePatientComponent implements OnInit {
       this.resetFormComponents();
       console.log(JSON.stringify(this.patient))
     } else {
-      this.getInvalidFields();
+      this.resetInvalidFields();
+      this.getMissingFields();
+      this.getMissingMultipleFields();
       this.toastr.error('Missing Fields', 'Error In Creation');
       this.scrollUp();
     }
@@ -111,76 +120,58 @@ export class CreatePatientComponent implements OnInit {
   }
 
   checkValidation(): boolean {
-    var valid: boolean = this.basicInfoComponent.isValid()
-      && this.idInfoComponent.isValid()
-      && (this.addressComp.isValid() && this.addressComp.addresses.length > 0)
-      && (this.contactComponent.isValid() && this.contactComponent.contacts.length > 0)
-      && (this.insuranceComponent.isValid() && this.patient.patientInsuranceModels.length > 0)
-      && (this.patient.clinicsId.length === 0)
-      && (this.caseComponent.isValid() && this.patient.patientCaseModels.length > 0)
+    var valid: boolean = true;
+    this.components.forEach(component => {
+      valid = valid && component.isValid();
+    });
+
     return valid;
   }
 
-  getInvalidFields() {
+  resetInvalidFields() {
     this.basicInvalidFields = [];
     this.idInvalidFields = [];
     this.addressInvalidFields = [];
     this.contactInvalidFields = [];
     this.insuranceInvalidFields = [];
     this.caseInvalidFields = [];
-
-    if (!this.basicInfoComponent.isValid())
-      this.basicInfoComponent.getInvalidControls().forEach(invalidControl => {
-        this.basicInvalidFields.push(invalidControl);
+  }
+  getMissingFields() {
+    this.components.forEach(component => {
+      component.getInvalidControls().forEach(invalidControl => {
+        if (component instanceof PatientBasicInfoComponent)
+          this.basicInvalidFields.push(invalidControl);
+        if (component instanceof PatientIdInfoComponent)
+          this.idInvalidFields.push(invalidControl);
+        if (component instanceof ContactComponent)
+          this.contactInvalidFields.push(invalidControl);
+        if (component instanceof AddressComponent)
+          this.addressInvalidFields.push(invalidControl);
+        if (component instanceof PatientInsuranceInfoComponent)
+          this.insuranceInvalidFields.push(invalidControl);
+        if (component instanceof PatientCaseInfoComponent)
+          this.caseInvalidFields.push(invalidControl);
       });
-    if (!this.idInfoComponent.isValid()) {
-      this.idInfoComponent.getInvalidControls().forEach(invalidControl => {
-        this.idInvalidFields.push(invalidControl);
-      });
-    }
+    });
 
-    if (!this.addressComp.isValid()) {
-      this.addressComp.getInvalidControls().forEach(invalidControl => {
-        this.addressInvalidFields.push(invalidControl);
-      });
-    } else if (this.addressComp.addresses.length === 0) {
-      this.addressInvalidFields.push("Push Address(s) inputs")
-    }
+  }
 
-    if (!this.contactComponent.isValid()) {
-      this.contactComponent.getInvalidControls().forEach(invalidControl => {
-        this.contactInvalidFields.push(invalidControl);
-      });
-    } else if (this.contactComponent.contacts.length === 0) {
-      this.contactInvalidFields.push("Push Contacts(s) inputs")
-    }
-
-    if (!this.insuranceComponent.isValid()) {
-      this.insuranceComponent.getInvalidControls().forEach(invalidControl => {
-        this.insuranceInvalidFields.push(invalidControl);
-      });
-    } else if (this.patient.patientInsuranceModels.length === 0) {
-      this.insuranceInvalidFields.push("Push Insurance(s) inputs")
-    }
-
+  getMissingMultipleFields() {
     if (this.patient.clinicsId.length === 0)
-      this.invalidFields.push("Assign Created Patient to at least one clinic")
-
-    if (!this.caseComponent.isValid()) {
-      this.caseComponent.getInvalidControls().forEach(invalidControl => {
-        this.caseInvalidFields.push(invalidControl);
-      });
-    } else if (this.patient.patientCaseModels.length === 0) {
-      this.clinicInvalidFields.push("Push Case(s) inputs")
-    }
+      this.clinicInvalidFields.push("Assign Clinic(s) to Patient")
+    if (this.patient.contacts.length === 0)
+      this.contactInvalidFields.push("Push Contacts(s) Inputs")
+    if (this.patient.addresses.length === 0)
+      this.addressInvalidFields.push("Push Address(s) Inputs")
+    if (this.patient.patientInsuranceModels.length === 0)
+      this.insuranceInvalidFields.push("Push Insurance(s) Inputs")
+    if (this.patient.patientCaseModels.length === 0)
+      this.caseInvalidFields.push("Push Cases(s) Inputs")
   }
   resetFormComponents() {
-    this.basicInfoComponent.resetForm();
-    this.idInfoComponent.resetForm();
-    this.addressComp.resetForm();
-    this.contactComponent.resetForm();
-    this.insuranceComponent.resetForm();
-    this.caseComponent.resetForm();
+    this.components.forEach(component => {
+      component.resetForm();
+    });
   }
   scrollUp() {
     (function smoothscroll() {
