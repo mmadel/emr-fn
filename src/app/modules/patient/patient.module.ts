@@ -24,7 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ListPatientComponent,
   CreatePatientComponent,
-  PatientChartComponent
+  PatientChartComponent,
+  UpcomingAppointmentComponent,
+  PreviousAppointmentComponent
 } from './index';
 
 import {
@@ -36,7 +38,6 @@ import {
   PatientClinicInfoComponent,
   PatientCaseInfoComponent
 } from './components/create';
-
 
 const APP_PATIENTS_COMPONENTS = [
   ListPatientComponent,
@@ -54,9 +55,16 @@ const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
   PatientCaseInfoComponent
 ]
 
+const APP_PATIENT_CHART_COMPONENTS = [
+  UpcomingAppointmentComponent,
+  PreviousAppointmentComponent
+]
+
 @NgModule({
   declarations: [
-    APP_PATIENTS_COMPONENTS,...APP_PATIENTS_DEPENDENCIES_COMPONENTS,
+    APP_PATIENTS_COMPONENTS,
+    ...APP_PATIENTS_DEPENDENCIES_COMPONENTS,
+    ...APP_PATIENT_CHART_COMPONENTS
   ],
   imports: [
     AlertModule,

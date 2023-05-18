@@ -15,27 +15,27 @@
                     <c-card cBorder="primary" class="mb-2">
                         <c-card-body *ngIf="patientChartInfo">
                             <h5 cCardTitle>
-                                <svg cIcon name="cilUser" size="lg"></svg>
-                                <small class="fw-bold"> Name : </small>
-                                <small class="fw-normal">{{patientChartInfo.name}}</small>
+                                <svg cIcon name="cilUser" size="xl"></svg>
+                                <small class="fw-bold fs-4"> Name : </small>
+                                <small class="fw-normal fs-5">{{patientChartInfo.name}}</small>
                             </h5>
                             <h5 cCardTitle>
-                                <svg cIcon name="cilBirthdayCake" size="lg"></svg>
-                                <small class="fw-bold"> Date Of Birth :</small>
-                                <small class="fw-normal">{{patientChartInfo.dateOfBirth}}</small>
+                                <svg cIcon name="cilBirthdayCake" size="xl"></svg>
+                                <small class="fw-bold fs-4"> Date Of Birth : </small>
+                                <small class="fw-normal fs-5">{{patientChartInfo.dateOfBirth}}</small>
                             </h5>
                             <h5 cCardTitle>
-                                <svg cIcon name="cilInfinity" size="lg"></svg>
-                                <small class="fw-bold"> Age :</small>
-                                <small class="fw-normal">{{patientChartInfo.age}}</small>
+                                <svg cIcon name="cilInfinity" size="xl"></svg>
+                                <small class="fw-bold fs-4"> Age : </small>
+                                <small class="fw-normal fs-5">{{patientChartInfo.age}}</small>
                             </h5>
                             <h5 cCardTitle *ngIf="patientChartInfo.address">
-                                <svg cIcon name="cilAddressBook" size="lg"></svg>
-                                <small class="fw-bold"> Addresses :</small>
+                                <svg cIcon name="cilAddressBook" size="xl"></svg>
+                                <small class="fw-bold fs-4"> Addresses : </small>
                                 <ul class="list-unstyled">
                                     <ul>
                                         <li *ngFor="let address of patientChartInfo.address; let i = index">
-                                            <small class="fw-normal">{{address}}</small>
+                                            <small class="fw-normal fs-5">{{address}}</small>
                                         </li>
                                     </ul>
 
@@ -54,7 +54,7 @@
                                     </button>
                                 </ng-template>
                                 <ng-template cTemplateId="accordionBodyTemplate">
-                                    Upcoming Appointment
+                                    <app-upcoming-appointment></app-upcoming-appointment>
                                 </ng-template>
                             </c-accordion-item>
                             <c-accordion-item #item1="cAccordionItem" [visible]="false">
@@ -65,7 +65,7 @@
                                     </button>
                                 </ng-template>
                                 <ng-template cTemplateId="accordionBodyTemplate">
-                                    Previous Appointment
+                                    <app-previous-appointment></app-previous-appointment>
                                 </ng-template>
                             </c-accordion-item>
                         </c-accordion>
