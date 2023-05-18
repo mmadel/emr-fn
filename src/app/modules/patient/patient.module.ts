@@ -22,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   ListPatientComponent,
-  CreatePatientComponent
+  CreatePatientComponent,
+  PatientChartComponent
 } from './index';
 
 import {
@@ -33,11 +34,13 @@ import {
   PatientInsuranceInfoComponent,
   PatientClinicInfoComponent,
   PatientCaseInfoComponent
-} from './components/create'
+} from './components/create';
+
 
 const APP_PATIENTS_COMPONENTS = [
   ListPatientComponent,
-  CreatePatientComponent
+  CreatePatientComponent,
+  PatientChartComponent
 ]
 
 const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
