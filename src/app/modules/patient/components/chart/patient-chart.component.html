@@ -17,23 +17,23 @@
                     <c-card cBorder="primary" class="mb-2">
                         <c-card-body *ngIf="patientChartInfo">
                             <h5 cCardTitle>
-                                <svg cIcon name="cilUser" size="xl"></svg>
-                                <small class="fw-bold fs-4"> Name : </small>
+                                
+                                <small class="fw-bold fs-5"> Name : </small>
                                 <small class="fw-normal fs-5">{{patientChartInfo.name}}</small>
                             </h5>
                             <h5 cCardTitle>
-                                <svg cIcon name="cilBirthdayCake" size="xl"></svg>
-                                <small class="fw-bold fs-4"> Date Of Birth : </small>
+                                
+                                <small class="fw-bold fs-5"> Date Of Birth : </small>
                                 <small class="fw-normal fs-5">{{patientChartInfo.dateOfBirth}}</small>
                             </h5>
                             <h5 cCardTitle>
-                                <svg cIcon name="cilInfinity" size="xl"></svg>
-                                <small class="fw-bold fs-4"> Age : </small>
+                                
+                                <small class="fw-bold fs-5"> Age : </small>
                                 <small class="fw-normal fs-5">{{patientChartInfo.age}}</small>
                             </h5>
                             <h5 cCardTitle *ngIf="patientChartInfo.address">
-                                <svg cIcon name="cilAddressBook" size="xl"></svg>
-                                <small class="fw-bold fs-4"> Addresses : </small>
+                                
+                                <small class="fw-bold fs-5"> Addresses : </small>
                                 <ul class="list-unstyled">
                                     <ul>
                                         <li *ngFor="let address of patientChartInfo.address; let i = index">
