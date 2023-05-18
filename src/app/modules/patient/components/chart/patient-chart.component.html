@@ -11,7 +11,9 @@
         <c-col class="col">
             <c-card class="mb-3 ustify-content-center">
                 <c-card-header>
-                    <h3>Patient information {{patientChartInfo.address}}</h3>
+                    <h3>Patient information</h3>
+                </c-card-header>
+                <c-card-body>
                     <c-card cBorder="primary" class="mb-2">
                         <c-card-body *ngIf="patientChartInfo">
                             <h5 cCardTitle>
@@ -44,7 +46,7 @@
                         </c-card-body>
                     </c-card>
                     <c-card cBorder="primary" class="mb-2">
-                        <c-accordion [alwaysOpen]="false" [flush]="true" class="shadow m-3">
+                        <c-accordion [alwaysOpen]="false" class="shadow m-3">
                             <c-accordion-item #item0="cAccordionItem" [visible]="false">
                                 <ng-template cTemplateId="accordionHeaderTemplate">
                                     <button (click)="item0.toggleItem()" [collapsed]="!item0.visible" cAccordionButton>
@@ -70,8 +72,6 @@
                             </c-accordion-item>
                         </c-accordion>
                     </c-card>
-                </c-card-header>
-                <c-card-body>
                 </c-card-body>
             </c-card>
         </c-col>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { ListTemplate } from 'src/app/modules/common/template/list.template';
 import { AddressUtil } from 'src/app/util/address.util';
 import { PatientName } from 'src/app/util/name.util';
 import { PatientChartInfo } from '../../models/chart/patient.chart.info';
@@ -13,7 +14,7 @@ import { PatientService } from '../../services/patient.service';
   templateUrl: './patient-chart.component.html',
   styleUrls: ['./patient-chart.component.css']
 })
-export class PatientChartComponent implements OnInit {
+export class PatientChartComponent extends ListTemplate implements OnInit {
   patientChartInfo: PatientChartInfo={
     id: 0,
     name: '',
@@ -22,7 +23,7 @@ export class PatientChartComponent implements OnInit {
     address: []
   };
   constructor(private route: ActivatedRoute
-    , private pateintService: PatientService) { }
+    , private pateintService: PatientService) { super();}
 
   ngOnInit(): void {
     var patientId: number = Number(this.route.snapshot.paramMap.get('patientId'))
