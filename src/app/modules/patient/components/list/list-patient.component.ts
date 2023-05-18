@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map, Observable, retry, tap } from 'rxjs';
 import { ListTemplate } from 'src/app/modules/common/template/list.template';
 import { Patient } from '../../models/patient';
-import { PatientService } from '../../services/patient.service';
+import { PatientFinderPaginationService } from '../../services/patient/patient-finder-pagination.service';
 
 @Component({
   selector: 'app-list-patient',
@@ -16,7 +16,7 @@ export class ListPatientComponent extends ListTemplate implements OnInit {
 
   constructor(
     private router: Router,
-    private patientService: PatientService,
+    private patientFinderPaginationService: PatientFinderPaginationService,
     private toastr: ToastrService) {
     super();
   }
@@ -26,7 +26,7 @@ export class ListPatientComponent extends ListTemplate implements OnInit {
   ngOnInit(): void {
     this.columns = this.constructColumns(['firstName', 'middleName', 'lastName', 'patientId', 'actions']);
     this.initListComponent();
-    this.patient$ = this.patientService.get(this.apiParams$).pipe(
+    this.patient$ = this.patientFinderPaginationService.getPateints(this.apiParams$).pipe(
       retry({
         delay: (error) => {
           console.warn('Retry: ', error);

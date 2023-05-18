@@ -7,7 +7,7 @@ import { PatientName } from 'src/app/util/name.util';
 import { PatientChartInfo } from '../../models/chart/patient.chart.info';
 import { Patient } from '../../models/patient';
 import { PateintResponse } from '../../models/response/patient.response';
-import { PatientService } from '../../services/patient.service';
+import { PatientFinderService } from '../../services/patient/patient-finder.service';
 
 @Component({
   selector: 'app-patient-chart',
@@ -15,7 +15,7 @@ import { PatientService } from '../../services/patient.service';
   styleUrls: ['./patient-chart.component.css']
 })
 export class PatientChartComponent extends ListTemplate implements OnInit {
-  patientChartInfo: PatientChartInfo={
+  patientChartInfo: PatientChartInfo = {
     id: 0,
     name: '',
     dateOfBirth: '',
@@ -23,17 +23,17 @@ export class PatientChartComponent extends ListTemplate implements OnInit {
     address: []
   };
   constructor(private route: ActivatedRoute
-    , private pateintService: PatientService) { super();}
+    , private patientFinderService: PatientFinderService) { super(); }
 
   ngOnInit(): void {
     var patientId: number = Number(this.route.snapshot.paramMap.get('patientId'))
-    this.pateintService.getPatient(patientId, 1).subscribe((response: PateintResponse) => {
+    this.patientFinderService.getPatient(patientId, 1).subscribe((response: PateintResponse) => {
       var patient: Patient = response.records
       this.patientChartInfo.name = PatientName.formatName(patient.firstName, patient.middleName, patient.lastName);
       this.patientChartInfo.dateOfBirth = moment(patient.birthDate).format("MM-DD-YYYY");
 
       for (var i = 0; i < patient.addresses.length; i++) {
-        
+
         this.patientChartInfo.address.push(AddressUtil.formatAddress(patient.addresses[i]))
       }
       console.log(this.patientChartInfo.address);
