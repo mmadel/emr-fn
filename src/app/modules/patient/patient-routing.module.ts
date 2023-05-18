@@ -26,7 +26,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'chart',
+        path: 'chart/patientId/:patientId',
         component: PatientChartComponent,
         data: {
           title: 'chart',

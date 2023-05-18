@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { IApiParams } from '../../common/template/interfaces/api.params';
 import { Patient } from '../models/patient';
 import { IData } from '../components/list/interfaces/i.data';
+import { PateintResponse } from '../models/response/patient.response';
 
 const httpOptions = {
   // headers: new HttpHeaders({
@@ -41,7 +42,7 @@ export class PatientService {
   create(patient: Patient) {
     const headers = { 'content-type': 'application/json' }
     var createURL = this.baseUrl + '/create'
-    return this.httpClient.post(`${createURL}`, JSON.stringify(patient), { 'headers': headers})
+    return this.httpClient.post(`${createURL}`, JSON.stringify(patient), { 'headers': headers })
   }
 
   delete(patientId: number) {
@@ -77,5 +78,11 @@ export class PatientService {
   }
   private handleHttpError(error: HttpErrorResponse) {
     return throwError(() => error);
+  }
+
+  getPatient(patientId: number, clinicId: number) {
+    const headers = { 'content-type': 'application/json' }
+    var getPatientURL = this.baseUrl + '/find/clinicId/' + 1 + '/patient/' + patientId
+    return this.httpClient.get<PateintResponse>(`${getPatientURL}`, { 'headers': headers },)
   }
 }

@@ -11,21 +11,36 @@
         <c-col class="col">
             <c-card class="mb-3 ustify-content-center">
                 <c-card-header>
-                    <h3>Patient information</h3>
+                    <h3>Patient information {{patientChartInfo.address}}</h3>
                     <c-card cBorder="primary" class="mb-2">
-                        <c-card-body>
-                            <h6 cCardTitle>
-                                <strong><svg cIcon name="cilUser"></svg> Name: </strong>
-                            </h6>
-                            <h6 cCardTitle>
-                                <strong><svg cIcon name="cilBirthdayCake"></svg> Date Of Birth: </strong>
-                            </h6>
-                            <h6 cCardTitle>
-                                <strong><svg cIcon name="cilInfinity"></svg> Age:</strong>
-                            </h6>
-                            <h6 cCardTitle>
-                                <strong><svg cIcon name="cilAddressBook"></svg> Address:</strong>
-                            </h6>
+                        <c-card-body *ngIf="patientChartInfo">
+                            <h5 cCardTitle>
+                                <svg  cIcon name="cilUser" size="lg"></svg>
+                                <small class="fw-bold"> Name : </small>
+                                <small class="fw-normal">{{patientChartInfo.name}}</small>
+                            </h5>
+                            <h5 cCardTitle>
+                                <svg cIcon name="cilBirthdayCake" size="lg"></svg>
+                                <small class="fw-bold"> Date Of Birth :</small>
+                                <small class="fw-normal">{{patientChartInfo.dateOfBirth}}</small>
+                            </h5>
+                            <h5 cCardTitle>
+                                <svg cIcon name="cilInfinity" size="lg"></svg>
+                                <small class="fw-bold"> Age :</small>
+                                <small class="fw-normal">{{patientChartInfo.age}}</small>
+                            </h5>
+                            <h5 cCardTitle *ngIf="patientChartInfo.address">
+                                <svg cIcon name="cilAddressBook" size="lg"></svg>
+                                <small class="fw-bold"> Addresses :</small>
+                                <ul class="list-unstyled">
+                                    <ul>
+                                        <li *ngFor="let address of patientChartInfo.address; let i = index">
+                                            <small class="fw-normal">{{address}}</small>
+                                        </li>
+                                    </ul>
+
+                                </ul>
+                            </h5>
                         </c-card-body>
                     </c-card>
                     <c-card cBorder="primary" class="mb-2">
