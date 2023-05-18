@@ -55,4 +55,7 @@ export class ListPatientComponent extends ListTemplate implements OnInit {
   remove(patientId: number) {
 
   }
+  chart(patientId: number) {
+    this.router.navigateByUrl('/patient/chart');
+  }
 }
