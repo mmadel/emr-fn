@@ -1,6 +1,6 @@
 <form cForm #addressForm="ngForm" (ngSubmit)="add()">
     <small *ngIf="addresstype.invalid && (addresstype.dirty || addresstype.touched)" class="form-text text-danger">
-        Insurance Company Address Type is required
+        Address Type is required
     </small>
     <c-input-group class="mb-3">
         <select cFormControl cSelect sizing="sm" id="addresstype" name="addresstype" required
@@ -15,7 +15,7 @@
 
     <span *ngIf="address.addressType ==='Other'">
         <small *ngIf="other.invalid && (other.dirty || other.touched)" class="form-text text-danger">
-            Insurance Company Other Address is required
+            Other Address is required
         </small>
         <c-input-group class="mb-3">
             <input autoComplete="name" cFormControl id="name" name="name" sizing="sm" placeholder="Other Address"
@@ -25,7 +25,7 @@
     </span>
 
     <small *ngIf="firstAddress.invalid && (firstAddress.dirty || firstAddress.touched)" class="form-text text-danger">
-        Insurance Company firstAddress is required
+        FirstAddress is required
     </small>
     <c-input-group class="mb-3">
         <input autoComplete="name" cFormControl id="firstAddress" name="firstAddress" sizing="sm"
@@ -36,7 +36,7 @@
 
     <small *ngIf="secondAddress.invalid && (secondAddress.dirty || secondAddress.touched)"
         class="form-text text-danger">
-        Insurance Company secondAddress is required
+        SecondAddress is required
     </small>
     <c-input-group class="mb-3">
         <input cFormControl id="secondAddress" name="secondAddress" sizing="sm" placeholder="Second Address"
@@ -45,7 +45,7 @@
     </c-input-group>
 
     <small *ngIf="country.invalid && (country.dirty || country.touched)" class="form-text text-danger">
-        Insurance Company Country Address is required
+        Country Address is required
     </small>
     <c-input-group class="mb-3">
         <select cFormControl cSelect sizing="sm" id="country" name="country" required
@@ -59,7 +59,7 @@
     </c-input-group>
     <span *ngIf="address.country !== 'United States of America' && (address.country !== null)">
         <small *ngIf="province.invalid && (province.dirty || province.touched)" class="form-text text-danger">
-            Insurance Company province is required
+            Province is required
         </small>
         <c-input-group class="mb-3">
             <input cFormControl id="province" name="province" sizing="sm" placeholder="Province" required
@@ -70,7 +70,7 @@
 
     <span *ngIf="address.country == 'United States of America'">
         <small *ngIf="state.invalid && (state.dirty || state.touched)" class="form-text text-danger">
-            Insurance Company State is required
+            State is required
         </small>
         <c-input-group class="mb-3">
             <input cFormControl id="state" name="state" sizing="sm" placeholder="State" required
@@ -79,7 +79,7 @@
         </c-input-group>
     </span>
     <small *ngIf="city.invalid && (city.dirty || city.touched)" class="form-text text-danger">
-        Insurance Company city is required
+        City is required
     </small>
     <c-input-group class="mb-3">
         <input cFormControl id="state" name="state" sizing="sm" placeholder="City" required
@@ -88,7 +88,7 @@
     </c-input-group>
 
     <small *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="form-text text-danger">
-        Insurance Company zipCode is required
+        ZipCode is required
     </small>
     <c-input-group class="mb-3">
         <input zipcode cFormControl id="zipCode" name="zipCode" sizing="sm" placeholder="Zip-Code" required
@@ -99,13 +99,13 @@
         <button cButton color="primary" variant="outline" (click)="add()">Add</button>
     </div>
 </form>
-<table cTable hover striped>
+<table  class="table table-sm">
     <thead>
         <tr>
-            <th scope="col">Address Number</th>
+            <th scope="col">#</th>
             <th scope="col">Type</th>
-            <th scope="col">First Address</th>
-            <th scope="col">Second Adddress</th>
+            <th scope="col">First</th>
+            <th scope="col">Second</th>
             <th scope="col">Country</th>
             <th scope="col">Zip-Code</th>
             <th scope="col">Actions</th>

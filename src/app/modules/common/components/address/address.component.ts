@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, Self, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NgControl, NgForm } from '@angular/forms';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { BasicComponent } from 'src/app/util/basic.component';
 import { Address, AddressType, Countries, Country, States } from '../../models';
 
 @Component({
@@ -7,18 +8,30 @@ import { Address, AddressType, Countries, Country, States } from '../../models';
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.css']
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent extends BasicComponent implements OnInit, AfterViewInit {
   countries: Country[] = Countries;
   states: string[] = States;
   addressKeys = Object.values;
   addressTypes = AddressType;
-  @Input() address: Address
+  address: Address = {
+    addressType: null,
+    other: null,
+    firstAddress: null,
+    secondAddress: null,
+    country: null,
+    city: null,
+    province: null,
+    state: null,
+    zipCode: null
+  }
   @Input() addresses: Address[] = []
-  @Input() reset: boolean;
   @ViewChild('addressForm') addressForm: NgForm;
   @Output() pushedAddresses = new EventEmitter<Address[]>();
 
-  constructor() { }
+  constructor() { super() }
+  ngAfterViewInit(): void {
+    this.setForm(this.addressForm);
+  }
   add() {
     if (this.addressForm.valid) {
       let pushedAddress: Address = Object.assign({}, this.address);
@@ -27,7 +40,7 @@ export class AddressComponent implements OnInit {
       this.pushedAddresses.emit(this.addresses);
     }
   }
-  remove(index:number){
+  remove(index: number) {
     this.addresses.splice(index, 1);
   }
   ngOnInit(): void {

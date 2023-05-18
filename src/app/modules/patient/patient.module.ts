@@ -2,41 +2,57 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PatientRoutingModule } from './patient-routing.module';
-import {
-ListPatientComponent,
-CreatePatientComponent
-} from'./index';
 
 import {
   AlertModule, ButtonModule,
   CardModule, FormModule, GridModule,
   SharedModule, SmartPaginationModule, SmartTableModule, TableModule,
-  UtilitiesModule
+  UtilitiesModule,
+  DatePickerModule,
+  DateRangePickerModule,
+  ButtonGroupModule,
+  MultiSelectModule,
 } from '@coreui/angular-pro';
 
 import { EmrCommonModule } from '../common/emr-common.module';
 import { IconModule } from '@coreui/icons-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PatientBasicInfoComponent } from './components/create/patient.basic.info/patient-basic-info.component';
-import { PatientIdInfoComponent } from './components/create/patient.id.info/patient-id-info.component';
-import { PatientContactInfoComponent } from './components/create/patient.contact.info/patient-contact-info.component';
-import { PatientEmergencyInfoComponent } from './components/create/patient.emergency.info/patient-emergency-info.component';
-import { PatientInsuranceInfoComponent } from './components/create/patient.insurance.info/patient-insurance-info.component';
-import { PatientClinicInfoComponent } from './components/create/patient.clinic.info/patient-clinic-info.component';
-import { PatientCaseInfoComponent } from './components/create/patient.case.info/patient-case-info.component';
+
+
+import {
+  ListPatientComponent,
+  CreatePatientComponent
+} from './index';
+
+import {
+  PatientBasicInfoComponent,
+  PatientIdInfoComponent,
+  PatientContactInfoComponent,
+  PatientEmergencyInfoComponent,
+  PatientInsuranceInfoComponent,
+  PatientClinicInfoComponent,
+  PatientCaseInfoComponent
+} from './components/create'
+
+const APP_PATIENTS_COMPONENTS = [
+  ListPatientComponent,
+  CreatePatientComponent
+]
+
+const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
+  PatientBasicInfoComponent,
+  PatientIdInfoComponent,
+  PatientContactInfoComponent,
+  PatientEmergencyInfoComponent,
+  PatientInsuranceInfoComponent,
+  PatientClinicInfoComponent,
+  PatientCaseInfoComponent
+]
 
 @NgModule({
   declarations: [
-    ListPatientComponent,
-    CreatePatientComponent,
-    PatientBasicInfoComponent,
-    PatientIdInfoComponent,
-    PatientContactInfoComponent,
-    PatientEmergencyInfoComponent,
-    PatientInsuranceInfoComponent,
-    PatientClinicInfoComponent,
-    PatientCaseInfoComponent
+    APP_PATIENTS_COMPONENTS,...APP_PATIENTS_DEPENDENCIES_COMPONENTS,
   ],
   imports: [
     AlertModule,
@@ -55,6 +71,10 @@ import { PatientCaseInfoComponent } from './components/create/patient.case.info/
     TableModule,
     UtilitiesModule,
     IconModule,
+    DatePickerModule,
+    DateRangePickerModule,
+    ButtonGroupModule,
+    MultiSelectModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
   ]

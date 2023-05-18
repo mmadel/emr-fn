@@ -2,14 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PhonePipe } from './pips/phone.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule, ButtonModule, FormModule, GridModule, TableModule, UtilitiesModule, ButtonGroupModule } from '@coreui/angular-pro';
+import {
+  SharedModule,
+  ButtonModule,
+  FormModule,
+  GridModule,
+  TableModule,
+  UtilitiesModule,
+  ButtonGroupModule
+} from '@coreui/angular-pro';
+
 import { AddressComponent } from './components/address/address.component';
 import { ZipcodeDirective } from './directives/zipcode.directive';
 import { NumberonlyDirective } from './directives/numberonly.directive';
 import { IconModule } from '@coreui/icons-angular';
+import { SingleAddressComponent } from './components/single.address/single-address.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const APP_COMMON_COMPONENTS = [
   AddressComponent,
+  SingleAddressComponent,
+  ContactComponent
 ]
 
 const APP_COMMON_PIPES = [
@@ -24,7 +37,7 @@ const APP_COMMON_DIRECTIVES = [
   declarations: [
     APP_COMMON_COMPONENTS,
     ...APP_COMMON_PIPES,
-    ...APP_COMMON_DIRECTIVES
+    ...APP_COMMON_DIRECTIVES,
   ],
 
   imports: [

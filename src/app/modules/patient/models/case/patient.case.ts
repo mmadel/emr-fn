@@ -3,15 +3,17 @@ import { CaseOtherInformation } from "./case.other.information";
 import { CaseInsuranceInformation } from "./case.insurance.info";
 import { TreatingDoctor } from "./case.treating.doctor";
 import { ReferralCase } from "./case.referral";
+import { PlaceOfService } from "src/app/modules/common/models/enums/place.service";
+import { InjuryCase } from "src/app/modules/common/models/enums/injury.case";
 
 export interface PatientCase {
-    id: number;
+    id: number| null;
     title: string;
-    placeOfService: string;
-    treatingDoctor: TreatingDoctor;
-    injuryCase: string;
+    placeOfService: PlaceOfService | null;
+    treatingDoctor: TreatingDoctor | null;
+    injuryCase: InjuryCase | null;
     caseInsuranceInformation: CaseInsuranceInformation;
-    caseDiagnosis: CaseDiagnosis[];
-    referralCase: ReferralCase;
+    caseDiagnosis: CaseDiagnosis[] ;
+    referralCase: ReferralCase ;
     caseOtherInformation: CaseOtherInformation;
 }
