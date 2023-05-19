@@ -17,22 +17,22 @@
                     <c-card cBorder="primary" class="mb-2">
                         <c-card-body *ngIf="patientChartInfo">
                             <h5 cCardTitle>
-                                
+
                                 <small class="fw-bold fs-5"> Name : </small>
                                 <small class="fw-normal fs-5">{{patientChartInfo.name}}</small>
                             </h5>
                             <h5 cCardTitle>
-                                
+
                                 <small class="fw-bold fs-5"> Date Of Birth : </small>
                                 <small class="fw-normal fs-5">{{patientChartInfo.dateOfBirth}}</small>
                             </h5>
                             <h5 cCardTitle>
-                                
+
                                 <small class="fw-bold fs-5"> Age : </small>
                                 <small class="fw-normal fs-5">{{patientChartInfo.age}}</small>
                             </h5>
                             <h5 cCardTitle *ngIf="patientChartInfo.address">
-                                
+
                                 <small class="fw-bold fs-5"> Addresses : </small>
                                 <ul class="list-unstyled">
                                     <ul>
@@ -56,7 +56,7 @@
                                     </button>
                                 </ng-template>
                                 <ng-template cTemplateId="accordionBodyTemplate">
-                                    <app-upcoming-appointment></app-upcoming-appointment>
+                                    <app-upcoming-appointment [patientId]="patientId"></app-upcoming-appointment>
                                 </ng-template>
                             </c-accordion-item>
                             <c-accordion-item #item1="cAccordionItem" [visible]="false">

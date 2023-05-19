@@ -22,12 +22,13 @@ export class PatientChartComponent extends ListTemplate implements OnInit {
     age: 0,
     address: []
   };
+  patientId: number;
   constructor(private route: ActivatedRoute
     , private patientFinderService: PatientFinderService) { super(); }
 
   ngOnInit(): void {
-    var patientId: number = Number(this.route.snapshot.paramMap.get('patientId'))
-    this.patientFinderService.getPatient(patientId, 1).subscribe((response: PateintResponse) => {
+    this.patientId = Number(this.route.snapshot.paramMap.get('patientId'))
+    this.patientFinderService.getPatient(this.patientId, 1).subscribe((response: PateintResponse) => {
       var patient: Patient = response.records
       this.patientChartInfo.name = PatientName.formatName(patient.firstName, patient.middleName, patient.lastName);
       this.patientChartInfo.dateOfBirth = moment(patient.birthDate).format("MM-DD-YYYY");

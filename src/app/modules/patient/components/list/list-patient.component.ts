@@ -24,7 +24,7 @@ export class ListPatientComponent extends ListTemplate implements OnInit {
   patient$!: Observable<Patient[]>;
 
   ngOnInit(): void {
-    this.columns = this.constructColumns(['firstName', 'middleName', 'lastName', 'patientId', 'actions']);
+    this.columns = this.constructColumns(['id','firstName', 'middleName', 'lastName', 'patientId', 'actions']);
     this.initListComponent();
     this.patient$ = this.patientFinderPaginationService.getPateints(this.apiParams$).pipe(
       retry({

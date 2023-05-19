@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IColumn } from '@coreui/angular-pro/lib/smart-table/smart-table.type';
-import { Observable } from 'rxjs';
+import * as moment from 'moment';
+import { map, Observable, retry, tap } from 'rxjs';
 import { ListTemplate } from 'src/app/modules/common/template/list.template';
 import { Appointment } from '../../../models/appointments/appointment';
+import { UpcomingAppointmentService } from '../../../services/appointment/upcoming-appointment.service';
 
 @Component({
   selector: 'app-upcoming-appointment',
@@ -11,11 +13,35 @@ import { Appointment } from '../../../models/appointments/appointment';
 })
 export class UpcomingAppointmentComponent extends ListTemplate implements OnInit {
 
-  constructor() { super(); }
+  @Input() patientId: number;
+
+  constructor(private upcomingAppointmentService: UpcomingAppointmentService) { super(); }
   appointments$!: Observable<Appointment[]>;
   columns: (string | IColumn)[];
   ngOnInit(): void {
-    this.columns = this.constructColumns(['Title', 'StartDate', 'EndDate']);
+    this.columns = this.constructColumns(['title', 'startDate', 'endDate']);
+    this.appointments$ = this.upcomingAppointmentService.findAllIncomingAppointments(this.apiParams$, this.patientId).pipe(
+      retry({
+        delay: (error) => {
+          console.warn('Retry: ', error);
+          this.errorMessage$.next(error.message ?? `Error: ${JSON.stringify(error)}`);
+          this.loadingData$.next(false);
+          return this.retry$;
+        }
+      }),
+      tap((response: any) => {
+        this.totalItems$.next(response.number_of_matching_records);
+        if (response.number_of_records) {
+          this.errorMessage$.next('');
+        }
+        this.retry$.next(false);
+        this.loadingData$.next(false);
+      }),
+      map((response: any) => {
+        return response.records;
+      })
+    );
+
   }
 
 }

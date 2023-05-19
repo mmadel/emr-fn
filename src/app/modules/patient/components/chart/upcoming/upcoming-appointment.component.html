@@ -10,6 +10,12 @@
                     let-tdContent="tdContent">
                     <td>
                         <ng-container [ngSwitch]="columnName">
+                            <ng-container *ngSwitchCase="'startDate'">
+                                {{tdContent| date:'MMM d, y, h:mm a'}}
+                            </ng-container>
+                            <ng-container *ngSwitchCase="'endDate'">
+                                {{tdContent| date:'MMM d, y, h:mm a'}}
+                            </ng-container>
                             <ng-container *ngSwitchDefault>
                                 {{tdContent}}
                             </ng-container>
