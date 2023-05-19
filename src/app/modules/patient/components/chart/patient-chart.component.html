@@ -46,31 +46,41 @@
                         </c-card-body>
                     </c-card>
                     <c-card cBorder="primary" class="mb-2">
-                        <c-accordion [alwaysOpen]="false" class="shadow m-3">
-                            <c-accordion-item #item0="cAccordionItem" [visible]="false">
-                                <ng-template cTemplateId="accordionHeaderTemplate">
-                                    <button (click)="item0.toggleItem()" [collapsed]="!item0.visible" cAccordionButton>
-                                        <h5> <svg cIcon name="cilArrowCircleRight" size="xl"></svg>
-                                            Upcoming Appointment
-                                        </h5>
-                                    </button>
-                                </ng-template>
-                                <ng-template cTemplateId="accordionBodyTemplate">
-                                    <app-upcoming-appointment [patientId]="patientId"></app-upcoming-appointment>
-                                </ng-template>
-                            </c-accordion-item>
-                            <c-accordion-item #item1="cAccordionItem" [visible]="false">
-                                <ng-template cTemplateId="accordionHeaderTemplate">
-                                    <button (click)="item1.toggleItem()" [collapsed]="!item1.visible" cAccordionButton>
-                                        <h5> <svg cIcon name="cilArrowCircleLeft" size="xl"></svg>
-                                            Previous Appointment</h5>
-                                    </button>
-                                </ng-template>
-                                <ng-template cTemplateId="accordionBodyTemplate">
-                                    <app-previous-appointment [patientId]="patientId"></app-previous-appointment>
-                                </ng-template>
-                            </c-accordion-item>
-                        </c-accordion>
+                        <c-card-body>
+                            <select aria-label="Default select example" cSelect sizing="sm">
+                                <option>Select Clinic</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                            <c-accordion [alwaysOpen]="false" class="shadow m-3">
+                                <c-accordion-item #item0="cAccordionItem" [visible]="false">
+                                    <ng-template cTemplateId="accordionHeaderTemplate">
+                                        <button (click)="item0.toggleItem()" [collapsed]="!item0.visible"
+                                            cAccordionButton>
+                                            <h5> <svg cIcon name="cilArrowCircleRight" size="xl"></svg>
+                                                Upcoming Appointment
+                                            </h5>
+                                        </button>
+                                    </ng-template>
+                                    <ng-template cTemplateId="accordionBodyTemplate">
+                                        <app-upcoming-appointment [patientId]="patientId"></app-upcoming-appointment>
+                                    </ng-template>
+                                </c-accordion-item>
+                                <c-accordion-item #item1="cAccordionItem" [visible]="false">
+                                    <ng-template cTemplateId="accordionHeaderTemplate">
+                                        <button (click)="item1.toggleItem()" [collapsed]="!item1.visible"
+                                            cAccordionButton>
+                                            <h5> <svg cIcon name="cilArrowCircleLeft" size="xl"></svg>
+                                                Previous Appointment</h5>
+                                        </button>
+                                    </ng-template>
+                                    <ng-template cTemplateId="accordionBodyTemplate">
+                                        <app-previous-appointment [patientId]="patientId"></app-previous-appointment>
+                                    </ng-template>
+                                </c-accordion-item>
+                            </c-accordion>
+                        </c-card-body>
                     </c-card>
                 </c-card-body>
             </c-card>
