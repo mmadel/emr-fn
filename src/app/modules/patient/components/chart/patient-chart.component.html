@@ -47,11 +47,10 @@
                     </c-card>
                     <c-card cBorder="primary" class="mb-2">
                         <c-card-body>
-                            <select aria-label="Default select example" cSelect sizing="sm">
-                                <option>Select Clinic</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select aria-label="Default select example" cSelect sizing="sm" (change)="changeCase($event)">
+                                <option value="0">Select Case</option>
+                                <option *ngFor="let case of patientCases" [value]="case.id">
+                                    {{case.title}}</option>
                             </select>
                             <c-accordion [alwaysOpen]="false" class="shadow m-3">
                                 <c-accordion-item #item0="cAccordionItem" [visible]="false">

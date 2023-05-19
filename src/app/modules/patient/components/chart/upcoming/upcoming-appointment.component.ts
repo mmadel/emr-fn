@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IColumn } from '@coreui/angular-pro/lib/smart-table/smart-table.type';
-import * as moment from 'moment';
 import { map, Observable, retry, tap } from 'rxjs';
 import { ListTemplate } from 'src/app/modules/common/template/list.template';
 import { Appointment } from '../../../models/appointments/appointment';
 import { UpcomingAppointmentService } from '../../../services/appointment/upcoming-appointment.service';
+import { PateintCaseService } from '../../../services/patient/cases/pateint-case.service';
 
 @Component({
   selector: 'app-upcoming-appointment',
@@ -14,8 +14,10 @@ import { UpcomingAppointmentService } from '../../../services/appointment/upcomi
 export class UpcomingAppointmentComponent extends ListTemplate implements OnInit {
 
   @Input() patientId: number;
-
-  constructor(private upcomingAppointmentService: UpcomingAppointmentService) { super(); }
+  caseId: number;
+  constructor(private upcomingAppointmentService: UpcomingAppointmentService
+    , private pateintCaseService: PateintCaseService) { super(); }
+  clinicId: number;
   appointments$!: Observable<Appointment[]>;
   columns: (string | IColumn)[];
   ngOnInit(): void {
@@ -41,7 +43,10 @@ export class UpcomingAppointmentComponent extends ListTemplate implements OnInit
         return response.records;
       })
     );
-
+    this.pateintCaseService.selectedCase$.subscribe((caseId) => {
+      if (caseId !== null)
+        this.caseId = caseId;
+    })
   }
 
 }
