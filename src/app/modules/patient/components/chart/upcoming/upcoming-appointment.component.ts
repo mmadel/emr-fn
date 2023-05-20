@@ -15,11 +15,14 @@ export class UpcomingAppointmentComponent extends ListTemplate implements OnInit
 
   @Input() patientId: number;
   caseId: number = 0;
-  constructor(private upcomingAppointmentService: UpcomingAppointmentService
-    , private pateintCaseService: PateintCaseService) { super(); }
-  clinicId: number;
   appointments$!: Observable<Appointment[]>;
   columns: (string | IColumn)[];
+
+  constructor(
+    private upcomingAppointmentService: UpcomingAppointmentService
+    , private pateintCaseService: PateintCaseService
+  ) { super(); }
+
   ngOnInit(): void {
     this.columns = this.constructColumns(['title', 'startDate', 'endDate']);
 
@@ -29,13 +32,13 @@ export class UpcomingAppointmentComponent extends ListTemplate implements OnInit
     this.pateintCaseService.selectedCase$.subscribe((caseId) => {
       if (caseId !== null) {
         this.caseId = caseId;
-        this.getUpcomingAppointment();
+        this.getUpcomingAppointments();
       }
 
     })
   }
 
-  private getUpcomingAppointment() {
+  private getUpcomingAppointments() {
     if (this.caseId === 0) {
       this.getAllAppointments();
     }
