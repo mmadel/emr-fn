@@ -47,7 +47,8 @@
                     </c-card>
                     <c-card cBorder="primary" class="mb-2">
                         <c-card-body>
-                            <select aria-label="Default select example" cSelect sizing="sm" (change)="changeCase($event)">
+                            <select aria-label="Default select example" cSelect sizing="sm"
+                                (change)="changeCase($event)">
                                 <option value="0">Select Case</option>
                                 <option *ngFor="let case of patientCases" [value]="case.id">
                                     {{case.title}}</option>
@@ -90,9 +91,18 @@
         <c-col class="col">
             <c-card class="mb-3 ustify-content-center">
                 <c-card-header>
-                    <h3>Patient Case information</h3>
+                    <h3>Patient Cases</h3>
                 </c-card-header>
                 <c-card-body>
+                    <c-nav variant="tabs" *ngFor="let case of patientCases; let i = index">
+                        <a [active]="i===0" [cTabContent]="caseContent" [routerLink] [tabPaneIdx]="i"
+                            cNavLink>{{case.title}}</a>
+                    </c-nav>
+                    <c-tab-content #caseContent="cTabContent">
+                        <c-tab-pane class="p-3" *ngFor="let case of patientCases; let i = index">
+                            <app-patient-chart-case [case]="case"></app-patient-chart-case>
+                        </c-tab-pane>
+                    </c-tab-content>
                 </c-card-body>
             </c-card>
         </c-col>
