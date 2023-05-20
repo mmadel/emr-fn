@@ -17,6 +17,6 @@ export class CancelNoShowService extends BasePaginationService {
     pateintId: number,
     clinicId: number,
     caseId: number) {
-    return this.get(config$, this.baseUrl + '/patientId/' + pateintId + '/clinicId/' + 2 + 'patientCaseId/' + caseId)
+    return this.get(config$, this.baseUrl + '/patientId/' + pateintId + '/clinicId/' + 2 + '/patientCaseId/' + caseId)
   }
 }

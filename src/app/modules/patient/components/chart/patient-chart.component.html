@@ -100,7 +100,8 @@
                     </c-nav>
                     <c-tab-content #caseContent="cTabContent">
                         <c-tab-pane class="p-3" *ngFor="let case of patientCases; let i = index">
-                            <app-patient-chart-case [case]="case"></app-patient-chart-case>
+                            <app-patient-chart-case [case]="case" [patientId]="patientId"
+                                [clinicId]="2"></app-patient-chart-case>
                         </c-tab-pane>
                     </c-tab-content>
                 </c-card-body>
