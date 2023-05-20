@@ -12,6 +12,9 @@ import {
   DateRangePickerModule,
   ButtonGroupModule,
   MultiSelectModule,
+  AccordionModule,
+  TabsModule,
+  NavModule
 } from '@coreui/angular-pro';
 
 import { EmrCommonModule } from '../common/emr-common.module';
@@ -22,7 +25,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   ListPatientComponent,
-  CreatePatientComponent
+  CreatePatientComponent,
+  PatientChartComponent,
+  UpcomingAppointmentComponent,
+  PreviousAppointmentComponent,
+  PatientChartCaseComponent
 } from './index';
 
 import {
@@ -33,11 +40,12 @@ import {
   PatientInsuranceInfoComponent,
   PatientClinicInfoComponent,
   PatientCaseInfoComponent
-} from './components/create'
+} from './components/create';
 
 const APP_PATIENTS_COMPONENTS = [
   ListPatientComponent,
-  CreatePatientComponent
+  CreatePatientComponent,
+  PatientChartComponent
 ]
 
 const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
@@ -50,9 +58,18 @@ const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
   PatientCaseInfoComponent
 ]
 
+const APP_PATIENT_CHART_COMPONENTS = [
+  UpcomingAppointmentComponent,
+  PreviousAppointmentComponent,
+  PatientChartCaseComponent
+  
+]
+
 @NgModule({
   declarations: [
-    APP_PATIENTS_COMPONENTS,...APP_PATIENTS_DEPENDENCIES_COMPONENTS,
+    APP_PATIENTS_COMPONENTS,
+    ...APP_PATIENTS_DEPENDENCIES_COMPONENTS,
+    ...APP_PATIENT_CHART_COMPONENTS,
   ],
   imports: [
     AlertModule,
@@ -75,6 +92,9 @@ const APP_PATIENTS_DEPENDENCIES_COMPONENTS = [
     DateRangePickerModule,
     ButtonGroupModule,
     MultiSelectModule,
+    AccordionModule,
+    TabsModule,
+    NavModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
   ]

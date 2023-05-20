@@ -8,7 +8,7 @@ import { AddressComponent } from 'src/app/modules/common/components/address/addr
 import { ContactComponent } from 'src/app/modules/common/components/contact/contact.component';
 import { BasicComponent } from 'src/app/util/basic.component';
 import { Patient } from '../../models/patient';
-import { PatientService } from '../../services/patient.service';
+import { PatientCreationService } from '../../services/patient/patient-creation.service';
 import { PatientBasicInfoComponent } from './patient.basic.info/patient-basic-info.component';
 import { PatientCaseInfoComponent } from './patient.case.info/patient-case-info.component';
 import { PatientIdInfoComponent } from './patient.id.info/patient-id-info.component';
@@ -79,7 +79,7 @@ export class CreatePatientComponent implements OnInit, AfterViewInit {
     patientInsuranceModels: []
   };
   constructor(private toastr: ToastrService,
-    private patientService: PatientService,
+    private patientCreationService: PatientCreationService,
     private router: Router) { }
   ngAfterViewInit(): void {
 
@@ -95,7 +95,7 @@ export class CreatePatientComponent implements OnInit, AfterViewInit {
     if (this.valid) {
       this.converPatientFields();
       console.log(JSON.stringify(this.patient))
-      this.patientService.create(this.patient)
+      this.patientCreationService.create(this.patient)
         .pipe(
           catchError((error) => {
             console.log(error)

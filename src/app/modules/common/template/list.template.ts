@@ -1,7 +1,7 @@
 import { IColumn, IColumnFilterValue, ISorterValue } from "@coreui/angular-pro/lib/smart-table/smart-table.type";
 import { BehaviorSubject, combineLatest, debounceTime, distinctUntilChanged, map, Observable, Subject, takeUntil } from "rxjs";
-import { IApiParams } from "./interfaces/api.params";
-import { IParams } from "./interfaces/params";
+import { IApiParams } from "../interfaces/api.params";
+import { IParams } from "../interfaces/params";
 
 export class ListTemplate {
     readonly activePage$ = new BehaviorSubject(0);

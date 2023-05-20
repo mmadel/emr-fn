@@ -1,27 +1,9 @@
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, debounceTime, distinctUntilChanged, Observable, retry, switchMap, throwError } from 'rxjs';
+import { PaginationData } from '../interfaces/pagination.data';
 
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams
-} from '@angular/common/http';
-
-import {
-  BehaviorSubject,
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  Observable,
-  retry,
-  switchMap,
-  throwError
-} from 'rxjs';
-
-import { environment } from 'src/environments/environment';
-import { IApiParams } from '../../common/template/interfaces/api.params';
-import { Patient } from '../models/patient';
-import { IData } from '../components/list/interfaces/i.data';
-
+import { IApiParams } from '../interfaces/api.params';
 const httpOptions = {
   // headers: new HttpHeaders({
   //   'Content-Type': 'application/json',
@@ -29,26 +11,14 @@ const httpOptions = {
   //   Connection: 'keep-alive'
   // })
 };
-
 @Injectable({
   providedIn: 'root'
 })
-export class PatientService {
-  private baseUrl = environment.baseURL + 'patient'
+export class BasePaginationService {
+  url: string;
   constructor(private httpClient: HttpClient) { }
-
-
-  create(patient: Patient) {
-    const headers = { 'content-type': 'application/json' }
-    var createURL = this.baseUrl + '/create'
-    return this.httpClient.post(`${createURL}`, JSON.stringify(patient), { 'headers': headers})
-  }
-
-  delete(patientId: number) {
-
-  }
-
-  get(config$: BehaviorSubject<IApiParams>): Observable<any> {
+  get(config$: BehaviorSubject<IApiParams>, url: string): Observable<any> {
+    this.url = url;
     return config$.pipe(
       debounceTime(100),
       distinctUntilChanged(
@@ -59,8 +29,7 @@ export class PatientService {
       switchMap((config) => this.fetchData(config))
     );
   }
-
-  private fetchData(params: IApiParams): Observable<IData> {
+  private fetchData(params: IApiParams): Observable<PaginationData> {
     const apiParams = {
       ...params
     };
@@ -69,7 +38,7 @@ export class PatientService {
       ? { params: httpParams, ...httpOptions }
       : { params: {}, ...httpOptions };
     return this.httpClient
-      .get<IData>(this.baseUrl + "/find/clinicId/" + 1, options)
+      .get<PaginationData>(this.url, options)
       .pipe(
         retry({ count: 1, delay: 100000, resetOnSuccess: true }),
         catchError(this.handleHttpError)

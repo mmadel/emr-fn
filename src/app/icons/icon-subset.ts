@@ -118,7 +118,9 @@ import {
   cilTv,
   cilCloudUpload, cilAccountLogout,
   cilDevices,
-  cilViewModule
+  cilViewModule,
+  cilBirthdayCake,
+  cilInfinity
 } from '@coreui/icons';
 
 export const iconSubset = {
@@ -242,7 +244,9 @@ export const iconSubset = {
   cilTv,
   cilCloudUpload,
   cilAccountLogout,
-  cilViewModule
+  cilViewModule,
+  cilBirthdayCake,
+  cilInfinity
 };
 
 export enum IconSubset {
