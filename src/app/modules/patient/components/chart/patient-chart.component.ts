@@ -18,6 +18,7 @@ import { PatientFinderService } from '../../services/patient/patient-finder.serv
   styleUrls: ['./patient-chart.component.css']
 })
 export class PatientChartComponent extends ListTemplate implements OnInit {
+  accordionAlwaysOpen: boolean = false;
   patientChartInfo: PatientChartInfo = {
     id: 0,
     name: '',
@@ -48,6 +49,7 @@ export class PatientChartComponent extends ListTemplate implements OnInit {
     })
   }
   changeCase(event: any) {
+    this.accordionAlwaysOpen = true;
     var caseId: number = event.target.value;
     if (caseId !== null)
       this.pateintCaseService.selectedCase$.next(caseId);

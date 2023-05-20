@@ -52,7 +52,7 @@
                                 <option *ngFor="let case of patientCases" [value]="case.id">
                                     {{case.title}}</option>
                             </select>
-                            <c-accordion [alwaysOpen]="false" class="shadow m-3">
+                            <c-accordion [alwaysOpen]="accordionAlwaysOpen" class="shadow m-3">
                                 <c-accordion-item #item0="cAccordionItem" [visible]="false">
                                     <ng-template cTemplateId="accordionHeaderTemplate">
                                         <button (click)="item0.toggleItem()" [collapsed]="!item0.visible"
