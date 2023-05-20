@@ -20,6 +20,6 @@ export class UpcomingAppointmentService extends BasePaginationService {
   public findIncomingAppointmentsByCase(config$: BehaviorSubject<IApiParams>,
     pateintId: number,
     caseId: number): Observable<any> {
-    return this.get(config$, this.baseUrl + '/find/patientId/' + pateintId + '/clinicId/' + 1 + '/patientCaseId/' + caseId);
+    return this.get(config$, this.baseUrl + '/find/patientId/' + pateintId + '/clinicId/' + 2 + '/patientCaseId/' + caseId);
   }
 }

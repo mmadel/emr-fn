@@ -14,7 +14,7 @@ import { PateintCaseService } from '../../../services/patient/cases/pateint-case
 export class UpcomingAppointmentComponent extends ListTemplate implements OnInit {
 
   @Input() patientId: number;
-  caseId: number;
+  caseId: number = 0;
   constructor(private upcomingAppointmentService: UpcomingAppointmentService
     , private pateintCaseService: PateintCaseService) { super(); }
   clinicId: number;
@@ -22,6 +22,29 @@ export class UpcomingAppointmentComponent extends ListTemplate implements OnInit
   columns: (string | IColumn)[];
   ngOnInit(): void {
     this.columns = this.constructColumns(['title', 'startDate', 'endDate']);
+
+    if (this.caseId === 0) {
+      this.getAllAppointments();
+    }
+    this.pateintCaseService.selectedCase$.subscribe((caseId) => {
+      if (caseId !== null) {
+        this.caseId = caseId;
+        this.getUpcomingAppointment();
+      }
+
+    })
+  }
+
+  private getUpcomingAppointment() {
+    if (this.caseId === 0) {
+      this.getAllAppointments();
+    }
+    if (this.caseId > 0) {
+      this.getAppointmentsByCase();
+    }
+  }
+
+  private getAllAppointments() {
     this.appointments$ = this.upcomingAppointmentService.findAllIncomingAppointments(this.apiParams$, this.patientId).pipe(
       retry({
         delay: (error) => {
@@ -43,10 +66,29 @@ export class UpcomingAppointmentComponent extends ListTemplate implements OnInit
         return response.records;
       })
     );
-    this.pateintCaseService.selectedCase$.subscribe((caseId) => {
-      if (caseId !== null)
-        this.caseId = caseId;
-    })
   }
 
+  private getAppointmentsByCase() {
+    this.appointments$ = this.upcomingAppointmentService.findIncomingAppointmentsByCase(this.apiParams$, this.patientId, this.caseId).pipe(
+      retry({
+        delay: (error) => {
+          console.warn('Retry: ', error);
+          this.errorMessage$.next(error.message ?? `Error: ${JSON.stringify(error)}`);
+          this.loadingData$.next(false);
+          return this.retry$;
+        }
+      }),
+      tap((response: any) => {
+        this.totalItems$.next(response.number_of_matching_records);
+        if (response.number_of_records) {
+          this.errorMessage$.next('');
+        }
+        this.retry$.next(false);
+        this.loadingData$.next(false);
+      }),
+      map((response: any) => {
+        return response.records;
+      })
+    );
+  }
 }
