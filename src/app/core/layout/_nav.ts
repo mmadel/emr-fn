@@ -24,9 +24,6 @@ export const NavItems: INavData[] = [
     children: [
       {
         name: 'View Scheduler'
-      },
-      {
-        name: 'Scheduler Configuration'
       }
     ]
   },
@@ -42,6 +39,9 @@ export const NavItems: INavData[] = [
       {
         name: 'Users',
         url: 'administration/list/user'
+      },
+      {
+        name: 'Scheduler Configuration'
       }
     ]
   }
