@@ -1,4 +1,4 @@
-import { Address } from "../../common/models";
+import { Address } from "../../../common/models";
 
 export interface InsuranceCompany {
   id: number | null;

@@ -1,5 +1,5 @@
 import { PaymentType } from "src/app/modules/common/models/enums/payment.type";
-import { InsuranceCompany } from "src/app/modules/insurance.company/models/insurance.company";
+import { InsuranceCompany } from "src/app/modules/administration/model/insurance.company/insurance.company";
 
 export interface PatientInsurance {
   id: number | null;

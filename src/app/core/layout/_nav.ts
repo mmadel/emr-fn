@@ -8,7 +8,7 @@ export const NavItems: INavData[] = [
   },
   {
     name: 'Patient',
-    url: '/patient',
+    url: '/emr/patient',
     iconComponent: { name: 'cil-disabled' },
     children: [
       {
@@ -18,39 +18,30 @@ export const NavItems: INavData[] = [
     ]
   },
   {
-    name: 'User',
-    url: '/user',
-    iconComponent: { name: 'cil-user' },
+    name: 'Scheduler',
+    url: '/emr//scheduler',
+    iconComponent: { name: 'cil-calendar' },
     children: [
       {
-        name: 'Users List',
-        url: 'user/list'
+        name: 'View Scheduler'
       },
-    ]
-  },
-  {
-    name:'Insurance Compnay',
-    url:'/insurance-Compnay',
-    iconComponent: { name: 'cil-devices' },
-    children:[
       {
-        name: 'List Insurance Compnay',
-        url: '/insurance/company/list'
+        name: 'Scheduler Configuration'
       }
     ]
   },
   {
-    name: 'Scheduler',
-    url: '/scheduler',
-    iconComponent: { name: 'cil-calendar' },
+    name: 'Administration',
+    url: '/emr/administration',
+    iconComponent: { name: 'cilChart' },
     children: [
       {
-        name: 'View Scheduler',
-        url: '/scheduler/view'
+        name: 'Insurance Company',
+        url: 'administration/list/insurance/company'
       },
       {
-        name: 'Scheduler Configuration',
-        url: '/scheduler/configuration'
+        name: 'Users',
+        url: 'administration/list/user'
       }
     ]
   }
