@@ -4,8 +4,8 @@ import { IColumn } from '@coreui/angular-pro/lib/smart-table/smart-table.type';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable, retry, tap } from 'rxjs';
 import { ListTemplate } from 'src/app/modules/common/template/list.template';
-import { InsuranceCompany } from '../../models/insurance.company';
-import { InsuranceCompanyService } from '../../services/insurance-company.service';
+import { InsuranceCompany } from '../../../model/insurance.company/insurance.company';
+import { InsuranceCompanyService } from '../../../services/insurance.company/insurance-company.service';
 
 @Component({
   selector: 'app-list-insurance-company',

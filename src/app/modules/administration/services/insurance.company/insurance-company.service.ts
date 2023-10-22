@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, debounceTime, distinctUntilChanged, Observable, retry, switchMap, throwError } from 'rxjs';
+import { IApiParams } from 'src/app/modules/common/interfaces/api.params';
+import { IData } from 'src/app/modules/patient/components/list/interfaces/i.data';
 import { environment } from 'src/environments/environment';
-import { IApiParams } from '../components/list/interfaces/api.params';
-import { IData } from '../components/list/interfaces/idata';
-import { InsuranceCompany } from '../models/insurance.company';
+import { InsuranceCompany } from '../../model/insurance.company/insurance.company';
 const httpOptions = {
   // headers: new HttpHeaders({
   //   'Content-Type': 'application/json',

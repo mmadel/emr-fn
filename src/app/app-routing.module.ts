@@ -4,28 +4,22 @@ import { DefaultLayoutComponent } from './core';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'emr',
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'
     },
     children:[
       {
-        path: 'insurance/company',
-        loadChildren: () =>
-          import('./modules/insurance.company/insurance-company.module').then((m) => m.InsuranceCompanyModule)
-      },
-      {
         path: 'patient',
         loadChildren: () =>
           import('./modules/patient/patient.module').then((m) => m.PatientModule)
       },
       {
-        path:'user',
-        loadChildren:()=>
-          import('./modules/user/user.module').then((m)=> m.UserModule)
-        
-      }
+        path: 'administration',
+        loadChildren: () =>
+          import('./modules/administration/administration.module').then((m) => m.AdministrationModule)
+      },
     ]
     
   },

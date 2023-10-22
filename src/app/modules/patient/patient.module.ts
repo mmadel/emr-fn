@@ -1,46 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { PatientRoutingModule } from './patient-routing.module';
 
-import {
-  AlertModule, ButtonModule,
-  CardModule, FormModule, GridModule,
-  SharedModule, SmartPaginationModule, SmartTableModule, TableModule,
-  UtilitiesModule,
-  DatePickerModule,
-  DateRangePickerModule,
-  ButtonGroupModule,
-  MultiSelectModule,
-  AccordionModule,
-  TabsModule,
-  NavModule
-} from '@coreui/angular-pro';
 
-import { EmrCommonModule } from '../common/emr-common.module';
-import { IconModule } from '@coreui/icons-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmrCommonModule } from '../common/emr-common.module';
 
 
 import {
-  ListPatientComponent,
   CreatePatientComponent,
+  ListPatientComponent,
+  PatientChartCaseComponent,
   PatientChartComponent,
-  UpcomingAppointmentComponent,
   PreviousAppointmentComponent,
-  PatientChartCaseComponent
+  UpcomingAppointmentComponent
 } from './index';
 
 import {
-  PatientBasicInfoComponent,
-  PatientIdInfoComponent,
-  PatientContactInfoComponent,
-  PatientEmergencyInfoComponent,
-  PatientInsuranceInfoComponent,
-  PatientClinicInfoComponent,
-  PatientCaseInfoComponent
+  PatientBasicInfoComponent, PatientCaseInfoComponent, PatientClinicInfoComponent, PatientContactInfoComponent,
+  PatientEmergencyInfoComponent, PatientIdInfoComponent, PatientInsuranceInfoComponent
 } from './components/create';
+import { AccordionModule, DatePickerModule, SmartPaginationModule, SmartTableModule } from '@coreui/angular-pro';
 
 const APP_PATIENTS_COMPONENTS = [
   ListPatientComponent,
@@ -62,7 +43,7 @@ const APP_PATIENT_CHART_COMPONENTS = [
   UpcomingAppointmentComponent,
   PreviousAppointmentComponent,
   PatientChartCaseComponent
-  
+
 ]
 
 @NgModule({
@@ -72,29 +53,13 @@ const APP_PATIENT_CHART_COMPONENTS = [
     ...APP_PATIENT_CHART_COMPONENTS,
   ],
   imports: [
-    AlertModule,
     CommonModule,
     PatientRoutingModule,
-    GridModule,
-    SharedModule,
+    EmrCommonModule,
     SmartTableModule,
     SmartPaginationModule,
-    FormModule,
-    ButtonModule,
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    EmrCommonModule,
-    TableModule,
-    UtilitiesModule,
-    IconModule,
     DatePickerModule,
-    DateRangePickerModule,
-    ButtonGroupModule,
-    MultiSelectModule,
     AccordionModule,
-    TabsModule,
-    NavModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
   ]

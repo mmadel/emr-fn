@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgControl, NgForm, NgModel, ValidationErrors } from '@angular/forms';
-import { InsuranceCompanyType } from '../../../common/models/enums/insurance.company.type';
-import { Address } from '../../../common/models/address';
-import { InsuranceCompany } from '../../models/insurance.company';
-import { ToastrService } from 'ngx-toastr';
-import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
-import { InsuranceCompanyService } from '../../services/insurance-company.service';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { AddressComponent } from 'src/app/modules/common/components/address/address.component';
+import { Address, InsuranceCompanyType } from 'src/app/modules/common/models';
+import { InsuranceCompany } from '../../../model/insurance.company/insurance.company';
+import { InsuranceCompanyService } from '../../../services/insurance.company/insurance-company.service';
 
 @Component({
   selector: 'app-create-insurance-company',

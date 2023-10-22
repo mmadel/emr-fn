@@ -50,12 +50,12 @@ export class ListPatientComponent extends ListTemplate implements OnInit {
   }
 
   create() {
-    this.router.navigateByUrl('/patient/create');
+    this.router.navigateByUrl('emr/patient/create');
   }
   remove(patientId: number) {
 
   }
   chart(patientId: number) {
-    this.router.navigateByUrl('/patient/chart/patientId/' + patientId);
+    this.router.navigateByUrl('emr/patient/chart/patientId/' + patientId);
   }
 }

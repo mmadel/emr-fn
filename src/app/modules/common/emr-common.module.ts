@@ -3,13 +3,28 @@ import { CommonModule } from '@angular/common';
 import { PhonePipe } from './pips/phone.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  SharedModule,
+  TableModule,
+  AvatarModule,
+  BadgeModule,
+  BreadcrumbModule,
+  ButtonGroupModule,
   ButtonModule,
+  CardModule,
+  DateRangePickerModule,
+  DropdownModule,
+  FooterModule,
   FormModule,
   GridModule,
-  TableModule,
+  HeaderModule,
+  ListGroupModule,
+  NavModule,
+  ProgressModule,
+  SharedModule,
+  SidebarModule,
+  TabsModule,
   UtilitiesModule,
-  ButtonGroupModule
+  AlertModule,
+  MultiSelectModule
 } from '@coreui/angular-pro';
 
 import { AddressComponent } from './components/address/address.component';
@@ -33,6 +48,30 @@ const APP_COMMON_DIRECTIVES = [
   ZipcodeDirective,
   NumberonlyDirective,
 ]
+const COREUI_MODULES = [
+  AvatarModule,
+  BadgeModule,
+  BreadcrumbModule,
+  ButtonGroupModule,
+  ButtonModule,
+  CardModule,
+  DropdownModule,
+  FooterModule,
+  FormModule,
+  GridModule,
+  HeaderModule,
+  ListGroupModule,
+  NavModule,
+  ProgressModule,
+  SharedModule,
+  SidebarModule,
+  TabsModule,
+  UtilitiesModule,
+  IconModule,
+  DateRangePickerModule,
+  AlertModule,
+  MultiSelectModule
+]
 @NgModule({
   declarations: [
     APP_COMMON_COMPONENTS,
@@ -51,12 +90,14 @@ const APP_COMMON_DIRECTIVES = [
     TableModule,
     UtilitiesModule,
     IconModule,
-    ButtonGroupModule
+    ButtonGroupModule,
   ],
   exports: [
     APP_COMMON_COMPONENTS,
     ...APP_COMMON_PIPES,
-    ...APP_COMMON_DIRECTIVES
+    ...APP_COMMON_DIRECTIVES,
+    ...COREUI_MODULES,
+    ReactiveFormsModule ,FormsModule
   ],
 })
 export class EmrCommonModule { }
