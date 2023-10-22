@@ -9,19 +9,19 @@ const routes: Routes = [
     data: {
       title: 'insurance-company',
     },
-    children:[
+    children: [
       {
         path: 'list',
         component: ListInsuranceCompanyComponent,
         data: {
-          title: 'list',
+          title: 'List insurance company',
         },
       },
       {
         path: 'create',
         component: CreateInsuranceCompanyComponent,
         data: {
-          title: 'create',
+          title: 'Create insurance company',
         },
       },
     ]

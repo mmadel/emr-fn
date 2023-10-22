@@ -6,8 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
-
-
 import {
   AvatarModule,
   BadgeModule,
